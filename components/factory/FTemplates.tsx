@@ -218,6 +218,26 @@ function MiniWebsite({ t }: { t: Template }) {
         </div>
       )}
 
+      {/* Two-photo strip when a second image is available */}
+      {t.image && t.image2 && (
+        <div className="grid grid-cols-2 gap-0.5" style={{ height: 38 }}>
+          <div
+            style={{
+              backgroundImage: `url(${t.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          <div
+            style={{
+              backgroundImage: `url(${t.image2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        </div>
+      )}
+
       <div
         className="flex items-center gap-3 px-3 py-1.5 border-b"
         style={{ backgroundColor: "#FAFAFA", borderColor: "#EFEFEF", fontSize: "6px" }}

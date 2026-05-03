@@ -241,10 +241,10 @@ function FakeAbout({ t }: { t: Template }) {
             )}
           </div>
 
-          {t.image ? (
+          {t.image2 || t.image ? (
             <div className="relative rounded-2xl overflow-hidden shadow-lg" style={{ height: 360 }}>
               <Image
-                src={t.image}
+                src={t.image2 ?? t.image!}
                 alt={t.brand}
                 fill
                 className="object-cover"
@@ -272,6 +272,32 @@ function FakeAbout({ t }: { t: Template }) {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ─── Photo strip (two images side by side) ─── */
+function PhotoStrip({ image, image2, brand }: { image: string; image2: string; brand: string }) {
+  return (
+    <div className="grid grid-cols-2 gap-1" style={{ height: 320 }}>
+      <div className="relative overflow-hidden">
+        <Image
+          src={image}
+          alt={brand}
+          fill
+          className="object-cover hover:scale-105 transition-transform duration-700"
+          sizes="50vw"
+        />
+      </div>
+      <div className="relative overflow-hidden">
+        <Image
+          src={image2}
+          alt={brand}
+          fill
+          className="object-cover hover:scale-105 transition-transform duration-700"
+          sizes="50vw"
+        />
+      </div>
+    </div>
   );
 }
 
@@ -481,6 +507,7 @@ export default async function TemplatePage({
       <FakeNav t={t} />
       <FakeHero t={t} />
       <FakeServices t={t} />
+      {t.image && t.image2 && <PhotoStrip image={t.image} image2={t.image2} brand={t.brand} />}
       <FakeAbout t={t} />
       <FakeCTA t={t} />
       <FakeFooter t={t} />
