@@ -2,213 +2,8 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-type Template = {
-  industry: string;
-  benefit: string;
-  url: string;
-  brand: string;
-  tagline: string;
-  headline: string;
-  subline: string;
-  phone: string | null;
-  services: { label: string; detail: string }[];
-  cta: string;
-  secondaryCta: string;
-  bg: string;
-  accent: string;
-  imageBg: string;
-  badge: string | null;
-  hours: string | null;
-  trust: string[];
-};
-
-const templates: Template[] = [
-  {
-    industry: "Café & Restaurant",
-    benefit: "Speisekarte, Reservierung und Öffnungszeiten — auf einen Blick.",
-    url: "cafe-bergmann.at",
-    brand: "Café Bergmann",
-    tagline: "Frühstück · Mittagskarte · Kaffee",
-    headline: "Frisch gebacken, täglich für Sie da",
-    subline: "Warme Speisen, hausgemachte Kuchen und der beste Kaffee im Grätzl.",
-    phone: null,
-    services: [
-      { label: "Frühstückskarte", detail: "tägl. ab 7:00 Uhr" },
-      { label: "Mittagsmenü", detail: "Mo–Fr · ab 11:30" },
-      { label: "Catering & Events", detail: "auf Anfrage" },
-    ],
-    cta: "Tisch reservieren",
-    secondaryCta: "Speisekarte ansehen",
-    bg: "#2A1A0E",
-    accent: "#B5622A",
-    imageBg: "#5C3317",
-    badge: null,
-    hours: "Mo–Sa  7:00–18:00  ·  So  8:00–14:00",
-    trust: ["Seit 2009", "Wien, 7. Bezirk"],
-  },
-  {
-    industry: "Installateur & Handwerker",
-    benefit: "Notfallnummer prominent, Leistungen klar, Anfrage in Sekunden.",
-    url: "huber-sanitaer.at",
-    brand: "Huber Sanitär",
-    tagline: "Heizung · Sanitär · Notdienst",
-    headline: "Schnell. Zuverlässig. Vor Ort.",
-    subline: "Installationen, Wartung und 24h-Notdienst für Wien und Umgebung.",
-    phone: "+43 1 234 5678",
-    services: [
-      { label: "Heizungsservice", detail: "Wartung & Reparatur" },
-      { label: "Sanitärinstallation", detail: "Bad, Küche, WC" },
-      { label: "Notdienst 24/7", detail: "auch am Wochenende" },
-    ],
-    cta: "Jetzt anrufen",
-    secondaryCta: "Anfrage senden",
-    bg: "#192840",
-    accent: "#D4500A",
-    imageBg: "#253A55",
-    badge: "24h Notdienst",
-    hours: null,
-    trust: ["Meisterbetrieb", "Wien & Niederösterreich"],
-  },
-  {
-    industry: "Reinigung & Gebäudeservice",
-    benefit: "Vertrauen auf den ersten Blick — Leistungen, Erfahrung, Anfrageformular.",
-    url: "sauber-co.at",
-    brand: "Sauber & Co.",
-    tagline: "Büro · Haushalt · Umzugsreinigung",
-    headline: "Sauberkeit, auf die Sie sich verlassen",
-    subline: "Professionelle Reinigungsdienstleistungen für Betriebe und Privatkunden.",
-    phone: "+43 664 123 4567",
-    services: [
-      { label: "Büroreinigung", detail: "tägl. oder wöchentl." },
-      { label: "Fensterreinigung", detail: "innen & außen" },
-      { label: "Umzugsreinigung", detail: "inkl. Besenrein" },
-    ],
-    cta: "Angebot anfordern",
-    secondaryCta: "Alle Leistungen",
-    bg: "#163B2A",
-    accent: "#28A060",
-    imageBg: "#1E5038",
-    badge: "15 Jahre Erfahrung",
-    hours: "Mo–Fr  7:00–17:00",
-    trust: ["Versichert & zertifiziert", "Wien & Umgebung"],
-  },
-  {
-    industry: "Fahrradladen",
-    benefit: "Sortiment, Werkstatttermine und Öffnungszeiten digital erreichbar.",
-    url: "rad-und-tat.at",
-    brand: "Rad & Tat",
-    tagline: "Verkauf · Werkstatt · E-Bikes",
-    headline: "Ihr Fahrrad in besten Händen",
-    subline: "Verkauf, Service und Reparatur für alle Fahrradtypen — E-Bikes, City, Rennrad.",
-    phone: null,
-    services: [
-      { label: "E-Bikes & Räder", detail: "alle Marken & Typen" },
-      { label: "Werkstatt & Service", detail: "Termin online buchen" },
-      { label: "Zubehör & Ersatzteile", detail: "großes Lager" },
-    ],
-    cta: "Werkstatttermin",
-    secondaryCta: "Sortiment ansehen",
-    bg: "#1A2B1A",
-    accent: "#3D8B3D",
-    imageBg: "#243C24",
-    badge: null,
-    hours: "Di–Fr  9–18  ·  Sa  9–14",
-    trust: ["Fachhandel seit 1998", "Wien, 15. Bezirk"],
-  },
-  {
-    industry: "Kosmetikstudio",
-    benefit: "Online-Buchung, Behandlungsübersicht und Preisliste auf einen Blick.",
-    url: "studio-lumiere.at",
-    brand: "Studio Lumière",
-    tagline: "Kosmetik · Nails · Massage",
-    headline: "Schönheit mit Sorgfalt",
-    subline: "Individuelle Behandlungen in ruhiger Atmosphäre — nach Terminvereinbarung.",
-    phone: null,
-    services: [
-      { label: "Gesichtsbehandlung", detail: "ab 55€ · 60 Min." },
-      { label: "Naildesign", detail: "Gel, Acryl, Naturpflege" },
-      { label: "Massagen", detail: "Rücken, Ganzkörper" },
-    ],
-    cta: "Termin buchen",
-    secondaryCta: "Preisliste ansehen",
-    bg: "#2E1E1E",
-    accent: "#9B6060",
-    imageBg: "#4A2E2E",
-    badge: null,
-    hours: "Di–Sa nach Vereinbarung",
-    trust: ["Zertifizierte Kosmetikerin", "Wien, 1080"],
-  },
-  {
-    industry: "Arztpraxis",
-    benefit: "Sprechzeiten, Fachrichtung und Online-Termin klar und sofort sichtbar.",
-    url: "praxis-dr-mayer.at",
-    brand: "Dr. med. Mayer",
-    tagline: "Allgemeinmedizin · Hausarzt",
-    headline: "Ihre Hausarztpraxis in Wien",
-    subline: "Persönliche Betreuung, kurze Wartezeiten und Online-Terminbuchung.",
-    phone: "+43 1 876 5432",
-    services: [
-      { label: "Allgemeinmedizin", detail: "Kasse & Privat" },
-      { label: "Vorsorgeuntersuchung", detail: "inkl. Blutbild" },
-      { label: "Online Terminbuchung", detail: "rund um die Uhr" },
-    ],
-    cta: "Termin vereinbaren",
-    secondaryCta: "Sprechzeiten",
-    bg: "#132238",
-    accent: "#1A6BB5",
-    imageBg: "#1E3A5F",
-    badge: "Kasse & Privat",
-    hours: "Mo Di Do  8–12 & 14–17  ·  Fr  8–12",
-    trust: ["Seit 2005 in Wien", "Barrierefreier Zugang"],
-  },
-  {
-    industry: "Dachdecker & Bau",
-    benefit: "Leistungen, Referenzfotos und kostenlose Beratung sofort buchbar.",
-    url: "dach-und-fach.at",
-    brand: "Dach & Fach GmbH",
-    tagline: "Flachdach · Steildach · Klempner",
-    headline: "Ihr Dach in sicheren Händen",
-    subline: "Qualitätsarbeit auf jedem Dach — Neubau, Sanierung, Reparatur, Klempner.",
-    phone: "+43 676 555 0123",
-    services: [
-      { label: "Flachdachsanierung", detail: "inkl. Abdichtung" },
-      { label: "Steildachdeckung", detail: "Ziegel, Schiefer, Blech" },
-      { label: "Klempnerarbeiten", detail: "Rinnen, Fallrohre" },
-    ],
-    cta: "Kostenlose Beratung",
-    secondaryCta: "Referenzen ansehen",
-    bg: "#221208",
-    accent: "#A84010",
-    imageBg: "#3A2010",
-    badge: "Kostenloser Kostenvoranschlag",
-    hours: null,
-    trust: ["Meisterbetrieb", "Wien & Umgebung"],
-  },
-  {
-    industry: "Lokales Geschäft",
-    benefit: "Sortiment zeigen, Öffnungszeiten klar — mehr Laufkundschaft online.",
-    url: "stadtladen-wien.at",
-    brand: "Stadtladen Wien",
-    tagline: "Regionales · Lebensmittel · Geschenke",
-    headline: "Qualität aus der Nachbarschaft",
-    subline: "Regionale Produkte, frische Waren und liebevoll zusammengestellte Geschenkkörbe.",
-    phone: null,
-    services: [
-      { label: "Regionale Produkte", detail: "tägl. frische Lieferung" },
-      { label: "Geschenkkörbe", detail: "individuell zusammengestellt" },
-      { label: "Lieferservice Wien", detail: "ab 25€ Bestellwert" },
-    ],
-    cta: "Zum Sortiment",
-    secondaryCta: "Öffnungszeiten",
-    bg: "#211A0A",
-    accent: "#7A5A1E",
-    imageBg: "#3A2E10",
-    badge: null,
-    hours: "Mo–Fr  9–19  ·  Sa  9–17",
-    trust: ["Familienbetrieb seit 1987", "Wien, 1060"],
-  },
-];
+import Link from "next/link";
+import { templates, type Template } from "@/lib/templates";
 
 /* ─── Photo block that sits in the hero right column ─── */
 function PhotoBlock({
@@ -222,7 +17,6 @@ function PhotoBlock({
   imageBg: string;
   industry: string;
 }) {
-  // Subtle scene lines vary by industry type
   const isFood = industry.includes("Café") || industry.includes("Geschäft");
   const isMedical = industry.includes("Arzt");
   const isOutdoor = industry.includes("Dach") || industry.includes("Fahr");
@@ -237,7 +31,6 @@ function PhotoBlock({
         backgroundImage: `linear-gradient(145deg, ${accent}55 0%, ${imageBg} 60%, ${bg} 100%)`,
       }}
     >
-      {/* Simulated scene content */}
       {isFood && (
         <>
           <div className="absolute inset-x-3 top-3 h-3 rounded-sm opacity-30 bg-white" />
@@ -257,9 +50,7 @@ function PhotoBlock({
           <div className="absolute inset-x-0 top-0 h-10 opacity-10 bg-white" />
           <div
             className="absolute inset-x-0 bottom-0 h-6"
-            style={{
-              background: `linear-gradient(to top, ${imageBg}, transparent)`,
-            }}
+            style={{ background: `linear-gradient(to top, ${imageBg}, transparent)` }}
           />
           <div className="absolute inset-x-3 top-3 h-5 rounded-t-lg opacity-25 bg-white" />
         </>
@@ -270,7 +61,6 @@ function PhotoBlock({
           <div className="absolute left-4 top-4 w-3 h-3 rounded-full opacity-30 bg-white" />
         </>
       )}
-      {/* Subtle caption bar at bottom */}
       <div
         className="absolute bottom-0 left-0 right-0 px-2 py-1"
         style={{ background: "rgba(0,0,0,0.35)" }}
@@ -285,23 +75,18 @@ function PhotoBlock({
 function MiniWebsite({ t }: { t: Template }) {
   return (
     <div className="select-none overflow-hidden" style={{ fontSize: 0 }}>
-
-      {/* ── Top info bar (phone / badge) ── */}
       {(t.phone || t.badge) && (
         <div
           className="flex items-center justify-between px-3 py-[5px]"
           style={{ backgroundColor: t.accent, fontSize: "6.5px" }}
         >
-          {t.badge && (
-            <span className="font-bold text-white">{t.badge}</span>
-          )}
+          {t.badge && <span className="font-bold text-white">{t.badge}</span>}
           {t.phone && (
             <span className="text-white font-semibold ml-auto">{t.phone}</span>
           )}
         </div>
       )}
 
-      {/* ── Nav ── */}
       <div
         className="flex items-center justify-between px-3 py-[7px] bg-white border-b"
         style={{ borderColor: "#EBEBEB", fontSize: "7px" }}
@@ -319,12 +104,10 @@ function MiniWebsite({ t }: { t: Template }) {
         </div>
       </div>
 
-      {/* ── Hero ── */}
       <div
         className="flex items-center gap-3 px-3 py-4"
         style={{ backgroundColor: t.bg }}
       >
-        {/* Left: text */}
         <div className="flex-1 min-w-0">
           <div
             className="mb-1.5 leading-tight text-white font-bold"
@@ -363,17 +146,9 @@ function MiniWebsite({ t }: { t: Template }) {
             </div>
           </div>
         </div>
-
-        {/* Right: photo block */}
-        <PhotoBlock
-          bg={t.bg}
-          accent={t.accent}
-          imageBg={t.imageBg}
-          industry={t.industry}
-        />
+        <PhotoBlock bg={t.bg} accent={t.accent} imageBg={t.imageBg} industry={t.industry} />
       </div>
 
-      {/* ── Trust strip ── */}
       <div
         className="flex items-center gap-3 px-3 py-1.5 border-b"
         style={{ backgroundColor: "#FAFAFA", borderColor: "#EFEFEF", fontSize: "6px" }}
@@ -389,7 +164,6 @@ function MiniWebsite({ t }: { t: Template }) {
         ))}
       </div>
 
-      {/* ── Services ── */}
       <div className="px-3 py-3 bg-white">
         <div
           className="uppercase tracking-widest text-gray-400 mb-2"
@@ -404,15 +178,9 @@ function MiniWebsite({ t }: { t: Template }) {
               className="rounded-lg p-2 border"
               style={{ borderColor: "#EFEFEF", backgroundColor: "#FAFAFA" }}
             >
-              {/* Colored icon dot */}
               <div
                 className="rounded mb-1.5"
-                style={{
-                  width: 16,
-                  height: 14,
-                  backgroundColor: t.accent,
-                  opacity: 0.18,
-                }}
+                style={{ width: 16, height: 14, backgroundColor: t.accent, opacity: 0.18 }}
               />
               <div
                 className="font-semibold text-gray-800 leading-tight"
@@ -431,7 +199,6 @@ function MiniWebsite({ t }: { t: Template }) {
         </div>
       </div>
 
-      {/* ── Footer / hours ── */}
       <div
         className="px-3 py-2 flex items-center justify-between"
         style={{ backgroundColor: t.bg, fontSize: "6px" }}
@@ -464,10 +231,6 @@ function TemplateCard({
   index: number;
   inView: boolean;
 }) {
-  const handleClick = () => {
-    document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -479,15 +242,16 @@ function TemplateCard({
       }}
       className="flex flex-col group"
     >
-      {/* Industry label */}
       <div className="flex items-center gap-2 mb-3">
         <span className="px-2.5 py-1 rounded-full border border-border bg-canvas-warm text-ink-muted text-xs font-medium">
           {t.industry}
         </span>
       </div>
 
-      {/* Browser mockup */}
-      <div className="rounded-xl overflow-hidden border border-border shadow-sm group-hover:shadow-lg group-hover:border-border-strong transition-all duration-300 mb-4">
+      <Link
+        href={`/vorlagen/${t.slug}`}
+        className="block rounded-xl overflow-hidden border border-border shadow-sm group-hover:shadow-lg group-hover:border-border-strong transition-all duration-300 mb-4 relative"
+      >
         {/* Chrome bar */}
         <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#EDECEB] border-b border-[#DDDBD7]">
           <div className="flex gap-1">
@@ -501,23 +265,26 @@ function TemplateCard({
             </div>
           </div>
         </div>
-
-        {/* Mini website */}
         <MiniWebsite t={t} />
-      </div>
 
-      {/* Benefit text */}
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-canvas-dark/0 group-hover:bg-canvas-dark/60 transition-all duration-300 flex items-center justify-center">
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-canvas text-ink text-xs font-semibold px-4 py-2 rounded-full shadow-lg">
+            Vollständige Vorschau ansehen →
+          </span>
+        </div>
+      </Link>
+
       <p className="text-ink-soft text-sm leading-relaxed mb-3 flex-1">
         {t.benefit}
       </p>
 
-      {/* CTA */}
-      <button
-        onClick={handleClick}
-        className="w-full py-2.5 rounded-lg border border-ink text-ink text-xs font-semibold hover:bg-ink hover:text-canvas transition-colors duration-200"
+      <Link
+        href={`/vorlagen/${t.slug}`}
+        className="w-full py-2.5 rounded-lg border border-ink text-ink text-xs font-semibold hover:bg-ink hover:text-canvas transition-colors duration-200 text-center"
       >
-        So ähnlich anfragen
-      </button>
+        Vorschau ansehen
+      </Link>
     </motion.div>
   );
 }
@@ -547,9 +314,7 @@ export function FTemplates() {
                 aussehen.
               </h2>
               <p className="mt-5 text-ink-soft text-lg leading-relaxed max-w-xl">
-                Echte Betriebe in Wien und Österreich haben oft keine oder eine
-                veraltete Website. Diese Beispiele zeigen, wie eine saubere,
-                professionelle Firmenwebsite aussehen kann.
+                Klicken Sie auf ein Beispiel, um die vollständige Vorschau zu sehen — und zu verstehen, was für Ihren Betrieb möglich ist.
               </p>
             </div>
             <button
@@ -577,9 +342,7 @@ export function FTemplates() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-10 text-center text-ink-muted text-sm"
         >
-          Alle Beispiele dienen der Veranschaulichung — keine echten
-          Kundenprojekte. Ihre Website wird individuell auf Ihren Betrieb
-          zugeschnitten.
+          Alle Beispiele dienen der Veranschaulichung — keine echten Kundenprojekte. Ihre Website wird individuell auf Ihren Betrieb zugeschnitten.
         </motion.p>
       </div>
     </section>
