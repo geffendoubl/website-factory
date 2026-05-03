@@ -275,28 +275,26 @@ function FakeAbout({ t }: { t: Template }) {
   );
 }
 
-/* ─── Photo strip (two images side by side) ─── */
-function PhotoStrip({ image, image2, brand }: { image: string; image2: string; brand: string }) {
+/* ─── Photo strip (two or three images side by side) ─── */
+function PhotoStrip({ t }: { t: Template }) {
+  const photos = [t.image, t.image2, t.image3].filter(Boolean) as string[];
+  const cols = photos.length;
   return (
-    <div className="grid grid-cols-2 gap-1" style={{ height: 320 }}>
-      <div className="relative overflow-hidden">
-        <Image
-          src={image}
-          alt={brand}
-          fill
-          className="object-cover hover:scale-105 transition-transform duration-700"
-          sizes="50vw"
-        />
-      </div>
-      <div className="relative overflow-hidden">
-        <Image
-          src={image2}
-          alt={brand}
-          fill
-          className="object-cover hover:scale-105 transition-transform duration-700"
-          sizes="50vw"
-        />
-      </div>
+    <div
+      className="grid gap-1"
+      style={{ height: 320, gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+    >
+      {photos.map((src, i) => (
+        <div key={i} className="relative overflow-hidden">
+          <Image
+            src={src}
+            alt={t.brand}
+            fill
+            className="object-cover hover:scale-105 transition-transform duration-700"
+            sizes={`${Math.round(100 / cols)}vw`}
+          />
+        </div>
+      ))}
     </div>
   );
 }
@@ -507,7 +505,7 @@ export default async function TemplatePage({
       <FakeNav t={t} />
       <FakeHero t={t} />
       <FakeServices t={t} />
-      {t.image && t.image2 && <PhotoStrip image={t.image} image2={t.image2} brand={t.brand} />}
+      {t.image && t.image2 && <PhotoStrip t={t} />}
       <FakeAbout t={t} />
       <FakeCTA t={t} />
       <FakeFooter t={t} />

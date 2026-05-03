@@ -218,23 +218,25 @@ function MiniWebsite({ t }: { t: Template }) {
         </div>
       )}
 
-      {/* Two-photo strip when a second image is available */}
+      {/* Photo strip when multiple images are available */}
       {t.image && t.image2 && (
-        <div className="grid grid-cols-2 gap-0.5" style={{ height: 38 }}>
-          <div
-            style={{
-              backgroundImage: `url(${t.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-          <div
-            style={{
-              backgroundImage: `url(${t.image2})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
+        <div
+          className="grid gap-0.5"
+          style={{
+            height: 38,
+            gridTemplateColumns: t.image3 ? "1fr 1fr 1fr" : "1fr 1fr",
+          }}
+        >
+          {[t.image, t.image2, ...(t.image3 ? [t.image3] : [])].map((src, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundImage: `url(${src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          ))}
         </div>
       )}
 

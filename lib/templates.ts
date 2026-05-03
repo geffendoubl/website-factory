@@ -22,6 +22,7 @@ export type Template = {
   email: string;
   image?: string;
   image2?: string;
+  image3?: string;
 };
 
 export const templates: Template[] = [
@@ -269,6 +270,7 @@ export const templates: Template[] = [
     email: "hallo@brotzeit-vienna.at",
     image: "/images/templates/bakery.png",
     image2: "/images/templates/bakery-interior.png",
+    image3: "/images/templates/bakery-pastries.png",
   },
 ];
 
