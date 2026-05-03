@@ -20,6 +20,7 @@ export type Template = {
   about: string;
   address: string;
   email: string;
+  image?: string;
 };
 
 export const templates: Template[] = [
@@ -238,6 +239,34 @@ export const templates: Template[] = [
     about: "Der Stadtladen Wien ist seit 1987 in Familienbesitz. Wir führen ausschließlich Produkte, hinter denen wir stehen — von kleinen Betrieben aus Wien und Niederösterreich. Unser Ziel: Qualität, die man schmeckt, von Menschen, die man kennt.",
     address: "Gumpendorfer Straße 31, 1060 Wien",
     email: "hallo@stadtladen-wien.at",
+  },
+  {
+    slug: "baeckerei",
+    industry: "Bäckerei",
+    benefit: "Frisches Brot, Öffnungszeiten und Bestellung — einfach online.",
+    url: "brotzeit-vienna.at",
+    brand: "Brotzeit Bakery Vienna",
+    tagline: "Sauerteig · Handwerk · Wien",
+    headline: "Handgemacht. Täglich frisch.",
+    subline: "Echtes Handwerk, ehrliche Zutaten — Brot und Gebäck wie früher, mitten in Wien.",
+    phone: "+43 1 890 1234",
+    services: [
+      { label: "Sauerteigbrot", detail: "Täglich frisch gebacken — Roggen, Weizen, Dinkel und Mehrkorn in kleinen Chargen.", price: "Ab 4,80€" },
+      { label: "Feingebäck & Kuchen", detail: "Croissants, Kipferl, Nussschnecken und saisonale Spezialitäten — jeden Morgen frisch.", price: "Ab 1,60€" },
+      { label: "Bestellung & Catering", detail: "Brotplatten, Frühstücksboxen und individuelle Bestellungen für Events und Büros.", price: "Auf Anfrage" },
+    ],
+    cta: "Jetzt bestellen",
+    secondaryCta: "Sortiment ansehen",
+    bg: "#1C1208",
+    accent: "#A0622A",
+    imageBg: "#3D2210",
+    badge: null,
+    hours: "Mo–Fr  6:30–18:00  ·  Sa  7:00–14:00",
+    trust: ["Handwerk seit 2011", "Wien, 8. Bezirk", "Nur natürliche Zutaten"],
+    about: "Brotzeit Bakery Vienna steht für echtes Bäckerhandwerk ohne Kompromisse. Jedes Brot wird mit langen Teigruhezeiten, natürlichem Sauerteig und regionalen Zutaten gebacken. Kein Backmittel, keine Fertigmischungen — nur Zeit, Technik und gute Rohstoffe.",
+    address: "Josefstädter Straße 9, 1080 Wien",
+    email: "hallo@brotzeit-vienna.at",
+    image: "/images/templates/bakery.png",
   },
 ];
 

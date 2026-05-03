@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { templates, getTemplateBySlug, type Template } from "@/lib/templates";
 import { TemplateBanner } from "@/components/vorlagen/TemplateBanner";
 
@@ -56,64 +57,80 @@ function FakeNav({ t }: { t: Template }) {
 /* ─── Hero ─── */
 function FakeHero({ t }: { t: Template }) {
   return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: t.bg }}>
+    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ backgroundColor: t.bg }}>
       <div className="max-w-6xl mx-auto px-6">
-        <div className="max-w-2xl">
-          {t.badge && (
-            <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-6"
-              style={{ backgroundColor: `${t.accent}cc` }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"
-              />
-              {t.badge}
-            </div>
-          )}
-          <p className="text-sm font-medium uppercase tracking-widest mb-4" style={{ color: `${t.accent}` }}>
-            {t.tagline}
-          </p>
-          <h1
-            className="font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 text-white"
-            style={{ fontFamily: "Georgia, serif" }}
-          >
-            {t.headline}
-          </h1>
-          <p className="text-lg leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.6)" }}>
-            {t.subline}
-          </p>
-          {t.phone && (
-            <div className="flex items-center gap-3 mb-8">
+        <div className={`grid gap-12 items-center ${t.image ? "lg:grid-cols-2" : ""}`}>
+          <div className={t.image ? "" : "max-w-2xl"}>
+            {t.badge && (
               <div
-                className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: `${t.accent}33` }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-6"
+                style={{ backgroundColor: `${t.accent}cc` }}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: t.accent }}>
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.11 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
-                </svg>
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                {t.badge}
               </div>
-              <span className="text-xl font-bold text-white">{t.phone}</span>
+            )}
+            <p className="text-sm font-medium uppercase tracking-widest mb-4" style={{ color: t.accent }}>
+              {t.tagline}
+            </p>
+            <h1
+              className="font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 text-white"
+              style={{ fontFamily: "Georgia, serif" }}
+            >
+              {t.headline}
+            </h1>
+            <p className="text-lg leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.6)" }}>
+              {t.subline}
+            </p>
+            {t.phone && (
+              <div className="flex items-center gap-3 mb-8">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  style={{ backgroundColor: `${t.accent}33` }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: t.accent }}>
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.11 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+                  </svg>
+                </div>
+                <span className="text-xl font-bold text-white">{t.phone}</span>
+              </div>
+            )}
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="/#kontakt"
+                className="px-7 py-3.5 rounded-xl text-white font-semibold text-base transition-opacity hover:opacity-85"
+                style={{ backgroundColor: t.accent }}
+              >
+                {t.cta}
+              </a>
+              <a
+                href="/#kontakt"
+                className="px-7 py-3.5 rounded-xl font-semibold text-base transition-colors"
+                style={{ border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.7)" }}
+              >
+                {t.secondaryCta}
+              </a>
+            </div>
+          </div>
+
+          {/* Real photo when available */}
+          {t.image && (
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ height: 420 }}>
+              <Image
+                src={t.image}
+                alt={t.brand}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+              {/* Subtle dark overlay at bottom edge for blend */}
+              <div
+                className="absolute inset-x-0 bottom-0 h-24"
+                style={{ background: `linear-gradient(to top, ${t.bg}99, transparent)` }}
+              />
             </div>
           )}
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="/#kontakt"
-              className="px-7 py-3.5 rounded-xl text-white font-semibold text-base transition-opacity hover:opacity-85"
-              style={{ backgroundColor: t.accent }}
-            >
-              {t.cta}
-            </a>
-            <a
-              href="/#kontakt"
-              className="px-7 py-3.5 rounded-xl font-semibold text-base transition-colors"
-              style={{
-                border: "1px solid rgba(255,255,255,0.25)",
-                color: "rgba(255,255,255,0.7)",
-              }}
-            >
-              {t.secondaryCta}
-            </a>
-          </div>
         </div>
 
         {/* Trust pills */}
@@ -223,22 +240,35 @@ function FakeAbout({ t }: { t: Template }) {
               </div>
             )}
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {t.trust.map((item, i) => (
-              <div
-                key={item}
-                className={`p-5 rounded-2xl bg-white border border-gray-100 ${i === 0 ? "col-span-2" : ""}`}
-              >
+
+          {t.image ? (
+            <div className="relative rounded-2xl overflow-hidden shadow-lg" style={{ height: 360 }}>
+              <Image
+                src={t.image}
+                alt={t.brand}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4">
+              {t.trust.map((item, i) => (
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center mb-3"
-                  style={{ backgroundColor: `${t.accent}18` }}
+                  key={item}
+                  className={`p-5 rounded-2xl bg-white border border-gray-100 ${i === 0 ? "col-span-2" : ""}`}
                 >
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: t.accent }} />
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center mb-3"
+                    style={{ backgroundColor: `${t.accent}18` }}
+                  >
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: t.accent }} />
+                  </div>
+                  <p className="font-semibold text-gray-800 text-sm">{item}</p>
                 </div>
-                <p className="font-semibold text-gray-800 text-sm">{item}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

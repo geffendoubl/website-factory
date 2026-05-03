@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { templates, type Template } from "@/lib/templates";
 
 /* ─── Photo block that sits in the hero right column ─── */
@@ -11,12 +12,25 @@ function PhotoBlock({
   accent,
   imageBg,
   industry,
+  image,
 }: {
   bg: string;
   accent: string;
   imageBg: string;
   industry: string;
+  image?: string;
 }) {
+  if (image) {
+    return (
+      <div
+        className="relative rounded-lg overflow-hidden flex-shrink-0"
+        style={{ width: 80, height: 68 }}
+      >
+        <Image src={image} alt={industry} fill className="object-cover" sizes="80px" />
+      </div>
+    );
+  }
+
   const isFood = industry.includes("Café") || industry.includes("Geschäft");
   const isMedical = industry.includes("Arzt");
   const isOutdoor = industry.includes("Dach") || industry.includes("Fahr");
@@ -146,7 +160,7 @@ function MiniWebsite({ t }: { t: Template }) {
             </div>
           </div>
         </div>
-        <PhotoBlock bg={t.bg} accent={t.accent} imageBg={t.imageBg} industry={t.industry} />
+        <PhotoBlock bg={t.bg} accent={t.accent} imageBg={t.imageBg} industry={t.industry} image={t.image} />
       </div>
 
       <div
