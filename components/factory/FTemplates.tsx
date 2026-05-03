@@ -118,50 +118,105 @@ function MiniWebsite({ t }: { t: Template }) {
         </div>
       </div>
 
-      <div
-        className="flex items-center gap-3 px-3 py-4"
-        style={{ backgroundColor: t.bg }}
-      >
-        <div className="flex-1 min-w-0">
+      {t.image ? (
+        /* Photo-backed hero — full bleed */
+        <div
+          className="relative"
+          style={{
+            height: 100,
+            backgroundImage: `url(${t.image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* gradient overlay — dark at bottom, subtle at top */}
           <div
-            className="mb-1.5 leading-tight text-white font-bold"
-            style={{ fontSize: "9px" }}
-          >
-            {t.headline}
-          </div>
-          <div
-            className="mb-1 leading-tight"
-            style={{ fontSize: "6.5px", color: "rgba(255,255,255,0.55)" }}
-          >
-            {t.tagline}
-          </div>
-          <div
-            className="mb-3 leading-relaxed"
-            style={{ fontSize: "6px", color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}
-          >
-            {t.subline}
-          </div>
-          <div className="flex gap-1.5 items-center flex-wrap">
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(to top, ${t.bg}F5 0%, ${t.bg}99 45%, ${t.bg}44 75%, transparent 100%)`,
+            }}
+          />
+          {/* Text anchored to bottom */}
+          <div className="absolute bottom-0 left-0 right-0 px-3 pb-3">
             <div
-              className="px-2 py-[4px] rounded text-white font-semibold"
-              style={{ fontSize: "6.5px", backgroundColor: t.accent }}
+              className="font-bold text-white leading-tight mb-1"
+              style={{ fontSize: "9px", textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}
             >
-              {t.cta}
+              {t.headline}
             </div>
             <div
-              className="px-2 py-[3.5px] rounded border font-medium"
-              style={{
-                fontSize: "6px",
-                borderColor: "rgba(255,255,255,0.25)",
-                color: "rgba(255,255,255,0.55)",
-              }}
+              className="mb-2"
+              style={{ fontSize: "6px", color: "rgba(255,255,255,0.65)" }}
             >
-              {t.secondaryCta}
+              {t.tagline}
+            </div>
+            <div className="flex gap-1.5 items-center">
+              <div
+                className="px-2 py-[4px] rounded text-white font-semibold"
+                style={{ fontSize: "6.5px", backgroundColor: t.accent }}
+              >
+                {t.cta}
+              </div>
+              <div
+                className="px-2 py-[3.5px] rounded border font-medium"
+                style={{
+                  fontSize: "6px",
+                  borderColor: "rgba(255,255,255,0.3)",
+                  color: "rgba(255,255,255,0.65)",
+                }}
+              >
+                {t.secondaryCta}
+              </div>
             </div>
           </div>
         </div>
-        <PhotoBlock bg={t.bg} accent={t.accent} imageBg={t.imageBg} industry={t.industry} image={t.image} />
-      </div>
+      ) : (
+        /* Default split hero */
+        <div
+          className="flex items-center gap-3 px-3 py-4"
+          style={{ backgroundColor: t.bg }}
+        >
+          <div className="flex-1 min-w-0">
+            <div
+              className="mb-1.5 leading-tight text-white font-bold"
+              style={{ fontSize: "9px" }}
+            >
+              {t.headline}
+            </div>
+            <div
+              className="mb-1 leading-tight"
+              style={{ fontSize: "6.5px", color: "rgba(255,255,255,0.55)" }}
+            >
+              {t.tagline}
+            </div>
+            <div
+              className="mb-3 leading-relaxed"
+              style={{ fontSize: "6px", color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}
+            >
+              {t.subline}
+            </div>
+            <div className="flex gap-1.5 items-center flex-wrap">
+              <div
+                className="px-2 py-[4px] rounded text-white font-semibold"
+                style={{ fontSize: "6.5px", backgroundColor: t.accent }}
+              >
+                {t.cta}
+              </div>
+              <div
+                className="px-2 py-[3.5px] rounded border font-medium"
+                style={{
+                  fontSize: "6px",
+                  borderColor: "rgba(255,255,255,0.25)",
+                  color: "rgba(255,255,255,0.55)",
+                }}
+              >
+                {t.secondaryCta}
+              </div>
+            </div>
+          </div>
+          <PhotoBlock bg={t.bg} accent={t.accent} imageBg={t.imageBg} industry={t.industry} />
+        </div>
+      )}
 
       <div
         className="flex items-center gap-3 px-3 py-1.5 border-b"
