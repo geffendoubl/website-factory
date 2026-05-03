@@ -69,7 +69,7 @@ export function FNav() {
                 : "bg-canvas text-ink hover:bg-canvas/90"
             }`}
           >
-            Kostenlos anfragen
+            Website besprechen
           </button>
         </div>
 
@@ -120,7 +120,7 @@ export function FNav() {
             onClick={() => scrollTo("kontakt")}
             className="mt-2 px-5 py-3 rounded-full bg-ink text-canvas text-sm font-semibold text-center"
           >
-            Kostenlos anfragen
+            Website besprechen
           </button>
         </div>
       )}

@@ -71,12 +71,13 @@ export function FCTA() {
               Kontakt
             </p>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-ink leading-[1.15] mb-6">
-              Bereit für Ihre neue Website?
+              Schreiben Sie kurz,
+              <br />was Sie brauchen.
             </h2>
             <p className="text-ink-soft text-lg leading-relaxed mb-10">
-              Stellen Sie sich kurz vor. Wir melden uns innerhalb von 24 Stunden
-              mit einem unverbindlichen Angebot — ohne Verpflichtung,
-              ohne Kleingedrucktes.
+              Wir melden uns mit einer klaren Einschätzung — was sinnvoll ist,
+              was es kostet und wie schnell es geht. Kein Verkaufsgespräch,
+              keine Verpflichtung.
             </p>
 
             <div className="flex flex-col gap-4">
@@ -273,12 +274,12 @@ export function FCTA() {
                 >
                   {status === "loading"
                     ? "Wird gesendet …"
-                    : "Unverbindlich anfragen"}
+                    : "Anfrage absenden"}
                 </button>
 
-                <p className="text-ink-muted text-xs text-center">
-                  Wir melden uns innerhalb von 24 Stunden. Kein Spam,
-                  keine Weitergabe Ihrer Daten.
+                <p className="text-ink-muted text-sm text-center">
+                  Antwort innerhalb von 24 Stunden. Ihre Daten werden nicht
+                  weitergegeben.
                 </p>
               </form>
             )}

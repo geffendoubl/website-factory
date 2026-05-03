@@ -95,16 +95,13 @@ export function FWhyUs() {
               professionelle Websites für lokale Betriebe in Österreich.
             </p>
 
-            <div className="p-6 rounded-2xl bg-canvas border border-border">
-              <p className="text-ink text-sm font-medium mb-1">Samuel Geffen</p>
-              <p className="text-ink-muted text-sm">
-                Gründer · Geffen FlexCo · Wien
+            <div className="p-5 rounded-2xl bg-canvas border border-border">
+              <p className="text-ink-soft text-base leading-relaxed">
+                „Viele gute Betriebe sind online gar nicht auffindbar — und das
+                wird unnötig kompliziert gemacht. Das kann einfacher gehen."
               </p>
-              <p className="text-ink-soft text-sm leading-relaxed mt-4">
-                „Ich habe Geffen FlexCo gegründet, weil ich gesehen habe, wie
-                viele gute Betriebe online gar nicht auffindbar sind — und wie
-                unnötig kompliziert das oft gemacht wird. Das kann einfacher
-                gehen."
+              <p className="text-ink-muted text-sm mt-3">
+                Samuel Geffen · Gründer, Geffen FlexCo · Wien
               </p>
             </div>
           </motion.div>
@@ -126,10 +123,10 @@ export function FWhyUs() {
                 <div className="w-9 h-9 rounded-lg bg-canvas-warm flex items-center justify-center mb-4 text-ink-soft">
                   {reason.icon}
                 </div>
-                <h3 className="font-semibold text-ink text-sm mb-2">
+                <h3 className="font-semibold text-ink text-base mb-2">
                   {reason.title}
                 </h3>
-                <p className="text-ink-muted text-xs leading-relaxed">
+                <p className="text-ink-soft text-sm leading-relaxed">
                   {reason.desc}
                 </p>
               </motion.div>

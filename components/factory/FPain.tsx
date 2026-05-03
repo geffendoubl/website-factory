@@ -11,7 +11,7 @@ const cards = [
       </svg>
     ),
     title: "Online nicht gefunden",
-    body: "Wenn Ihre Kunden googeln, erscheint die Konkurrenz — nicht Sie. Was nicht online ist, existiert für viele schlicht nicht.",
+    body: "Wenn Ihre Kunden googeln, erscheint die Konkurrenz — nicht Sie. Wer online nicht auffindbar ist, existiert für viele schlicht nicht.",
   },
   {
     icon: (
@@ -19,8 +19,8 @@ const cards = [
         <rect width="18" height="14" x="3" y="3" rx="2" /><path d="M3 9h18M9 21l3-3 3 3" />
       </svg>
     ),
-    title: "Veralteter Auftritt",
-    body: "Eine schlechte oder zehn Jahre alte Website wirkt unprofessioneller als gar keine. Der erste Eindruck entscheidet.",
+    title: "Veraltete oder keine Website",
+    body: "Eine WordPress-Site von vor zehn Jahren oder gar keine Website hinterlässt denselben schlechten Eindruck. Kunden entscheiden in Sekunden.",
   },
   {
     icon: (
@@ -28,8 +28,8 @@ const cards = [
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.11 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
       </svg>
     ),
-    title: "Keine einfache Kontaktaufnahme",
-    body: "Kunden, die Sie nicht in wenigen Sekunden erreichen können, fragen beim nächsten weiter. Formulare und Rufnummern müssen sofort sichtbar sein.",
+    title: "Kein einfacher Kontaktweg",
+    body: "Kunden, die Ihre Nummer oder ein Formular nicht sofort finden, fragen beim nächsten Betrieb nach. Kontakt muss in drei Sekunden möglich sein.",
   },
   {
     icon: (
@@ -38,7 +38,7 @@ const cards = [
       </svg>
     ),
     title: "Anfragen bleiben aus",
-    body: "Eine gut gemachte Website arbeitet rund um die Uhr für Sie — auch wenn Sie schlafen. Ohne sie verlieren Sie täglich potenzielle Kunden.",
+    body: "Eine saubere Website arbeitet rund um die Uhr für Sie. Ohne sie verlieren Sie täglich Kunden, ohne es zu merken.",
   },
 ];
 
@@ -52,30 +52,31 @@ export function FPain() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-16"
         >
           <p className="text-ink-muted text-sm font-medium uppercase tracking-widest mb-4">
-            Die Realität
+            Das Problem
           </p>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-ink leading-[1.15] max-w-2xl">
             Kunden entscheiden in Sekunden.
           </h2>
           <p className="mt-5 text-ink-soft text-lg leading-relaxed max-w-2xl">
             Wer online nicht gefunden wird oder einen schlechten ersten Eindruck
-            macht, verliert Aufträge — still und ohne es zu merken.
+            macht, verliert Aufträge — still und ohne es zu merken. Betrifft
+            Cafés, Handwerker, Reinigungsbetriebe, Salons und viele andere.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {cards.map((card, i) => (
             <motion.div
               key={card.title}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
+                duration: 0.55,
+                ease: "easeOut",
                 delay: 0.1 + i * 0.07,
               }}
               className="group p-6 rounded-2xl border border-border hover:border-border-strong hover:shadow-sm transition-all duration-300 bg-canvas"
@@ -86,10 +87,31 @@ export function FPain() {
               <h3 className="font-semibold text-ink text-base mb-2">
                 {card.title}
               </h3>
-              <p className="text-ink-muted text-sm leading-relaxed">{card.body}</p>
+              <p className="text-ink-soft text-base leading-relaxed">{card.body}</p>
             </motion.div>
           ))}
         </div>
+
+        {/* WordPress callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.42 }}
+          className="mt-8 p-5 rounded-2xl bg-canvas-warm border border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+        >
+          <p className="text-ink-soft text-base leading-relaxed">
+            <span className="text-ink font-semibold">Einfache Firmenwebsites ohne komplizierte Systeme.</span>{" "}
+            Kein WordPress, kein Baukastentool, kein technischer Aufwand für Sie.
+          </p>
+          <button
+            onClick={() =>
+              document.getElementById("pakete")?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="shrink-0 px-5 py-2.5 rounded-full bg-ink text-canvas text-sm font-semibold hover:opacity-80 transition-opacity"
+          >
+            Preise ansehen
+          </button>
+        </motion.div>
       </div>
     </section>
   );

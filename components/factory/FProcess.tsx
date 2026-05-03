@@ -68,7 +68,7 @@ export function FProcess() {
               <h3 className="text-canvas font-semibold text-xl mb-3">
                 {step.title}
               </h3>
-              <p className="text-white/45 text-sm leading-relaxed">{step.desc}</p>
+              <p className="text-white/45 text-base leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -79,7 +79,7 @@ export function FProcess() {
           transition={{ duration: 0.6, delay: 0.55 }}
           className="mt-16 pt-10 border-t border-white/8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
         >
-          <p className="text-white/40 text-sm max-w-md">
+          <p className="text-white/40 text-base max-w-md">
             Persönlich in Wien betreut. Digital überall erreichbar.
           </p>
           <button

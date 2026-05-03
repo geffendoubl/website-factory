@@ -1,0 +1,311 @@
+# AI Website Factory - Cursor Rules
+
+## Project Overview
+
+AI Website Factory is a Next.js 16 application that generates premium local business websites from JSON client briefs. One JSON file = One complete website, automatically populated.
+
+**Stack**: Next.js 16, TypeScript, Tailwind CSS, App Router
+
+## Key Architecture
+
+### Client Brief System
+- Location: `clients/[clientName]/client-brief.json`
+- Loader: `lib/client-data.ts`
+- Interface: `ClientBrief` TypeScript interface
+- Format: Complete JSON schema with all business data
+
+### Components
+All components in `/components/`:
+- `Hero.tsx` - Full-screen hero banner
+- `Services.tsx` - Services/offerings grid
+- `Benefits.tsx` - Key metrics and benefits
+- `Process.tsx` - Step-by-step process
+- `Testimonials.tsx` - Customer testimonials
+- `FAQ.tsx` - Collapsible FAQ section
+- `Contact.tsx` - Contact form + info
+- `Footer.tsx` - Footer with links
+
+Each component:
+- Receives `brief: ClientBrief` prop
+- Renders data from JSON
+- Uses Tailwind CSS for styling
+- Responsive mobile-first design
+- Premium, conversion-focused layout
+
+### Main Page
+- Location: `app/page.tsx`
+- Type: Async server component
+- Loads: Client brief from JSON
+- Generates: Meta tags for SEO
+- Renders: All sections in sequence
+
+## File Organization
+
+```
+/clients                    # Client data (one per business)
+  /example-client/
+    client-brief.json      # Business data (EDIT THIS)
+    /images/               # Local images (optional)
+
+/lib
+  client-data.ts          # JSON loader + types
+
+/components
+  Hero.tsx                # All page sections
+  Services.tsx
+  Benefits.tsx
+  Process.tsx
+  Testimonials.tsx
+  FAQ.tsx
+  Contact.tsx
+  Footer.tsx
+
+/prompts
+  claude-client-brief.md  # Intake prompt for new clients
+
+/app
+  page.tsx                # Main page (uses all components)
+  layout.tsx              # Root layout
+  globals.css             # Global styles
+```
+
+## How It Works
+
+1. **Browser requests `/`**
+2. **`page.tsx` runs** (async server component)
+3. **Loads `clients/example-client/client-brief.json`**
+4. **Generates SEO metadata** from brief
+5. **Passes brief to all components**
+6. **Each component renders** using brief data
+7. **Full website is generated** from single JSON file
+
+## Creating New Clients
+
+### Option 1: Manual
+```bash
+mkdir -p clients/my-business/images
+cp clients/example-client/client-brief.json clients/my-business/
+# Edit clients/my-business/client-brief.json
+```
+
+### Option 2: With Claude (Recommended)
+1. Read: `prompts/claude-client-brief.md`
+2. Ask Claude to generate new brief
+3. Save to: `clients/[name]/client-brief.json`
+4. Run: `npm run dev`
+
+## Editing the JSON
+
+The JSON file controls everything:
+- Business name, tagline, description
+- All page headlines and content
+- Services, benefits, process steps
+- FAQs, testimonials, contact info
+- Images, colors (via Tailwind)
+- Social media links
+- CTA buttons and text
+
+Change the JSON → Website updates immediately (after refresh).
+
+## Styling
+
+- **Framework**: Tailwind CSS (all utility classes)
+- **Colors**: Primary blue (`#3b82f6`), dark grays
+- **Spacing**: Consistent padding/margins
+- **Typography**: Large, bold headlines, readable body text
+- **Responsive**: Mobile-first, scales to desktop
+- **Premium**: Whitespace, gradients, hover effects
+
+No CSS files needed - all Tailwind classes.
+
+## Components Best Practices
+
+### Do
+- ✅ Use Tailwind classes for all styling
+- ✅ Accept `brief: ClientBrief` as prop
+- ✅ Map over arrays from brief (services, faqs, etc)
+- ✅ Use semantic HTML elements
+- ✅ Add `alt` text to images
+- ✅ Make sections responsive (mobile-first)
+- ✅ Use hover states and transitions
+- ✅ Keep components focused and single-purpose
+
+### Don't
+- ❌ Don't import/use CSS files
+- ❌ Don't hardcode business data
+- ❌ Don't create global state (use props)
+- ❌ Don't add unnecessary complexity
+- ❌ Don't break the responsive layout
+- ❌ Don't modify app/page.tsx to add new sections (add component instead)
+
+## SEO & Metadata
+
+**Automatic from JSON**:
+- Page title: `{businessName} | {tagline}`
+- Meta description: From description field
+- Keywords: businessName, industry, location
+- Open Graph: Image, title, description
+- Twitter Card: All meta tags
+
+All generated in `page.tsx` using `generateMetadata()`.
+
+## Adding New Sections
+
+To add a new section to the website:
+
+1. **Create component**: `components/NewSection.tsx`
+   ```typescript
+   import { ClientBrief } from '@/lib/client-data'
+
+   export function NewSection({ brief }: { brief: ClientBrief }) {
+     return (
+       <section className="py-20 lg:py-28 bg-white">
+         {/* Your content here */}
+       </section>
+     )
+   }
+   ```
+
+2. **Add to JSON schema**: Update `ClientBrief` interface in `lib/client-data.ts`
+
+3. **Add to page**: Import and use in `app/page.tsx`
+   ```typescript
+   import { NewSection } from '@/components/NewSection'
+   // Then in return:
+   <NewSection brief={brief} />
+   ```
+
+## Common Tasks
+
+### Change Colors
+Edit Tailwind classes in components. No config needed - use inline classes.
+
+### Add New Client
+```bash
+mkdir -p clients/new-name/images
+cp clients/example-client/client-brief.json clients/new-name/
+# Edit the JSON
+```
+
+### Change Content
+Edit `clients/example-client/client-brief.json` - website updates on refresh.
+
+### Add Local Images
+1. Place in: `clients/example-client/images/hero.jpg`
+2. Use in JSON: `"heroImage": "/clients/example-client/images/hero.jpg"`
+
+### Modify Component Design
+Edit component file in `/components/` - only change Tailwind classes, keep structure same.
+
+## Development Commands
+
+```bash
+npm run dev      # Start dev server (localhost:3000)
+npm run build    # Build for production
+npm run start    # Run production build
+npm run lint     # Check code quality
+```
+
+## Deployment
+
+Works with any Next.js host:
+- **Vercel**: Push to GitHub, auto-deploys
+- **Netlify**: Same as Vercel
+- **Docker**: Standard Next.js deployment
+- **Self-hosted**: Standard Node.js server
+
+All client data is included in the build.
+
+## TypeScript
+
+All code is fully typed:
+- `ClientBrief` interface defines JSON schema
+- Component props are typed
+- Error messages are clear
+- Enable strict mode
+
+Trust the type system - it prevents bugs.
+
+## Imports
+
+Always use absolute imports:
+```typescript
+import { loadClientBrief } from '@/lib/client-data'
+import { Hero } from '@/components/Hero'
+```
+
+NOT relative imports:
+```typescript
+import { loadClientBrief } from '../lib/client-data'  // ❌ Don't do this
+```
+
+## Performance
+
+- ✅ Server components (no JS bloat)
+- ✅ Static generation (fast)
+- ✅ Image optimization (Next.js Image)
+- ✅ CSS optimization (Tailwind purges unused)
+- ✅ Fast Lighthouse scores
+
+## Debugging
+
+**Site won't start?**
+```bash
+rm -rf .next node_modules
+npm install
+npm run dev
+```
+
+**JSON error?**
+Validate JSON at: https://jsonlint.com
+
+**Component not showing?**
+Check:
+1. Component is imported in `page.tsx`
+2. Component receives `brief` prop
+3. JSON data is not empty for that section
+4. Tailwind classes are correct
+
+## Code Style
+
+- **Case**: camelCase for variables, PascalCase for components
+- **Naming**: Descriptive names (e.g., `handleFormSubmit`, not `handleClick`)
+- **Organization**: Group related code, keep components focused
+- **Comments**: Only for complex logic, code should be self-documenting
+
+## When to Ask for Help
+
+Use Claude when:
+- Creating a new client brief (use `prompts/claude-client-brief.md`)
+- Adding complex features (animations, interactions)
+- Debugging unexpected behavior
+- Scaling to multiple clients
+
+Don't ask for trivial changes - just edit files directly.
+
+## Important Notes
+
+- This is a **template system** - the same code generates different websites from JSON
+- Each client is **just a JSON file** - no code changes needed
+- **No database required** - everything is in JSON and deployed with code
+- **SEO is automatic** - metadata generated from JSON
+- **Mobile-first** - all components responsive by default
+
+## Quick Reference
+
+| Need to... | File to Edit |
+|---|---|
+| Change business name | `clients/example-client/client-brief.json` |
+| Add new service | Edit `services` array in JSON |
+| Change hero image | Edit `heroImage` URL in JSON |
+| Modify hero styling | Edit `components/Hero.tsx` |
+| Add testimonial | Add to `testimonials` array in JSON |
+| Create new section | Create `components/NewSection.tsx` |
+| Change colors | Update Tailwind classes in components |
+| Add new client | Create `clients/new-name/client-brief.json` |
+
+---
+
+**Everything flows from the JSON file. Edit that, and the website changes.**
+
+Questions? Check `prompts/claude-client-brief.md` for client intake process.

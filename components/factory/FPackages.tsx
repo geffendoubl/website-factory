@@ -51,7 +51,7 @@ const packages: Package[] = [
     ],
     cta: "Business anfragen",
     highlighted: true,
-    badge: "Meistgewählt",
+    badge: "Am häufigsten gewählt",
   },
   {
     name: "Premium",
@@ -271,20 +271,37 @@ export function FPackages() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-ink-muted text-sm mt-10"
+          className="mt-10 space-y-4"
         >
-          <span>Alle Preise zzgl. 20% MwSt.</span>
-          <span className="hidden sm:block text-border-strong">·</span>
-          <button
-            onClick={() =>
-              document
-                .getElementById("kontakt")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="underline underline-offset-2 hover:text-ink transition-colors"
-          >
-            Individuelles Angebot anfragen
-          </button>
+          {/* Trust pills */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              "Persönlich in Wien",
+              "Einmaliger Fixpreis",
+              "Keine Technikkenntnisse nötig",
+              "Für Betriebe wie Cafés, Handwerker, Reinigung u.v.m.",
+            ].map((pill) => (
+              <span
+                key={pill}
+                className="px-3 py-1.5 rounded-full border border-border text-ink-muted text-xs font-medium"
+              >
+                {pill}
+              </span>
+            ))}
+          </div>
+          <p className="text-center text-ink-muted text-sm">
+            Alle Preise zzgl. 20% MwSt. ·{" "}
+            <button
+              onClick={() =>
+                document
+                  .getElementById("kontakt")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="underline underline-offset-2 hover:text-ink transition-colors"
+            >
+              Individuelles Angebot anfragen
+            </button>
+          </p>
         </motion.div>
       </div>
     </section>

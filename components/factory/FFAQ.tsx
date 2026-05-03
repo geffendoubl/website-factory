@@ -63,7 +63,7 @@ function FAQItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="text-ink-soft text-sm leading-relaxed pb-5 max-w-2xl">
+            <p className="text-ink-soft text-base leading-relaxed pb-5 max-w-2xl">
               {a}
             </p>
           </motion.div>
