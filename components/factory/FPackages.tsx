@@ -11,7 +11,6 @@ type Package = {
   includesAll?: string;
   features: string[];
   cta: string;
-  highlighted: boolean;
   badge?: string;
 };
 
@@ -31,7 +30,6 @@ const packages: Package[] = [
       "Impressum & Datenschutz (Basis)",
     ],
     cta: "Starter anfragen",
-    highlighted: false,
   },
   {
     name: "Business",
@@ -50,7 +48,6 @@ const packages: Package[] = [
       "2 Korrekturschleifen",
     ],
     cta: "Business anfragen",
-    highlighted: true,
     badge: "Am häufigsten gewählt",
   },
   {
@@ -69,34 +66,185 @@ const packages: Package[] = [
       "30 Tage After-Launch-Support",
     ],
     cta: "Premium anfragen",
-    highlighted: false,
+    badge: "Full-Service",
   },
 ];
 
-function Check({ highlighted }: { highlighted: boolean }) {
+function CheckIcon({ tier }: { tier: "starter" | "business" | "premium" }) {
+  const ring =
+    tier === "premium" ? "rgba(212,168,64,0.4)" : tier === "business" ? "rgba(43,111,212,0.35)" : "rgba(0,0,0,0.15)";
+  const tick =
+    tier === "premium" ? "#D4A840" : tier === "business" ? "#2B6FD4" : "rgba(0,0,0,0.3)";
   return (
-    <svg
-      width="15"
-      height="15"
-      viewBox="0 0 15 15"
-      fill="none"
-      className="flex-shrink-0 mt-0.5"
-    >
-      <circle
-        cx="7.5"
-        cy="7.5"
-        r="7"
-        stroke="currentColor"
-        strokeOpacity={highlighted ? 0.3 : 0.2}
-      />
-      <path
-        d="M5 7.5l2 2 3-3.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="flex-shrink-0 mt-0.5">
+      <circle cx="7.5" cy="7.5" r="7" stroke={ring} />
+      <path d="M5 7.5l2 2 3-3.5" stroke={tick} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+function PackageCard({ pkg, index, inView }: { pkg: Package; index: number; inView: boolean }) {
+  const tier = pkg.name === "Premium" ? "premium" : pkg.name === "Business" ? "business" : "starter" as "starter" | "business" | "premium";
+  const P = tier === "premium";
+  const B = tier === "business";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 + index * 0.1 }}
+      className={
+        P
+          ? "relative flex flex-col rounded-2xl overflow-hidden shadow-premium"
+          : B
+          ? "relative flex flex-col rounded-2xl bg-canvas overflow-hidden shadow-blue-glow"
+          : "relative flex flex-col rounded-2xl bg-canvas border border-border shadow-card overflow-hidden"
+      }
+      style={P ? { backgroundColor: "#0D0D10" } : undefined}
+    >
+      {/* Top accent stripe */}
+      {B && <div className="h-1 bg-blue w-full flex-shrink-0" />}
+      {P && (
+        <div
+          className="h-1 w-full flex-shrink-0"
+          style={{ background: "linear-gradient(90deg, #C49830, #F0C060, #C49830)" }}
+        />
+      )}
+
+      {/* Badge */}
+      {pkg.badge && (
+        <div className="absolute top-5 right-5 z-10">
+          {P ? (
+            <span
+              className="px-3 py-1 text-[10px] font-bold rounded-full tracking-wide"
+              style={{ background: "rgba(212,168,64,0.12)", color: "#D4A840", border: "1px solid rgba(212,168,64,0.28)" }}
+            >
+              {pkg.badge}
+            </span>
+          ) : (
+            <span className="px-3 py-1 bg-blue text-canvas text-[10px] font-bold rounded-full">
+              {pkg.badge}
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Header */}
+      <div
+        className="p-8 pb-6"
+        style={{ borderBottom: P ? "1px solid rgba(255,255,255,0.06)" : B ? "1px solid rgba(43,111,212,0.12)" : "1px solid #E4E2DD" }}
+      >
+        <h3
+          className="font-display text-2xl font-bold mb-1.5"
+          style={P ? { color: "rgba(255,255,255,0.92)" } : { color: "#0A0A0A" }}
+        >
+          {pkg.name}
+        </h3>
+        <p
+          className="text-sm leading-relaxed"
+          style={P ? { color: "rgba(255,255,255,0.36)" } : { color: "#888580" }}
+        >
+          {pkg.tagline}
+        </p>
+
+        <div className="mt-6 flex items-baseline gap-1">
+          <span
+            className="font-display text-4xl font-bold tracking-tight"
+            style={P ? { color: "#D4A840" } : B ? { color: "#2B6FD4" } : { color: "#0A0A0A" }}
+          >
+            {pkg.price}€
+          </span>
+          <span
+            className="text-sm ml-1"
+            style={P ? { color: "rgba(255,255,255,0.25)" } : { color: "#888580" }}
+          >
+            einmalig
+          </span>
+        </div>
+
+        <div className="mt-4 inline-flex items-center gap-1.5">
+          <svg
+            width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+            style={P ? { color: "rgba(255,255,255,0.28)" } : { color: "#888580" }}
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          <span
+            className="text-xs font-medium"
+            style={P ? { color: "rgba(255,255,255,0.28)" } : { color: "#888580" }}
+          >
+            {pkg.deliveryDays}
+          </span>
+        </div>
+      </div>
+
+      {/* Features */}
+      <div className="p-8 pt-6 flex-1 flex flex-col">
+        {pkg.includesAll && (
+          <div
+            className="flex items-center gap-2 text-xs font-medium mb-5 pb-5"
+            style={{
+              borderBottom: P ? "1px solid rgba(255,255,255,0.06)" : "1px solid #E4E2DD",
+              color: P ? "rgba(255,255,255,0.32)" : "#888580",
+            }}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="17 11 12 6 7 11" />
+              <polyline points="17 18 12 13 7 18" />
+            </svg>
+            Alles aus {pkg.includesAll}, plus:
+          </div>
+        )}
+
+        <ul className="flex flex-col gap-3 flex-1">
+          {pkg.features.map((f) => (
+            <li
+              key={f}
+              className="flex items-start gap-3 text-sm"
+              style={P ? { color: "rgba(255,255,255,0.58)" } : { color: "#3D3D3D" }}
+            >
+              <CheckIcon tier={tier} />
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        {P ? (
+          <button
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent("selectPackage", { detail: pkg.name }));
+              document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="mt-8 w-full py-3.5 rounded-xl font-bold text-sm transition-opacity hover:opacity-85"
+            style={{ background: "linear-gradient(135deg, #C49830, #F0C060)", color: "#1A1008" }}
+          >
+            {pkg.cta}
+          </button>
+        ) : B ? (
+          <button
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent("selectPackage", { detail: pkg.name }));
+              document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="mt-8 w-full py-3.5 rounded-xl font-semibold text-sm bg-blue text-canvas hover:opacity-85 transition-opacity"
+          >
+            {pkg.cta}
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent("selectPackage", { detail: pkg.name }));
+              document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="mt-8 w-full py-3.5 rounded-xl font-semibold text-sm bg-canvas-warm border border-border text-ink-soft hover:border-border-strong hover:text-ink transition-colors"
+          >
+            {pkg.cta}
+          </button>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
@@ -126,144 +274,7 @@ export function FPackages() {
 
         <div className="grid md:grid-cols-3 gap-6 items-start">
           {packages.map((pkg, i) => (
-            <motion.div
-              key={pkg.name}
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.65,
-                ease: "easeOut",
-                delay: 0.1 + i * 0.1,
-              }}
-              className={`relative flex flex-col rounded-2xl ${
-                pkg.highlighted
-                  ? "bg-blue shadow-2xl shadow-blue/20"
-                  : "bg-canvas border border-border"
-              }`}
-            >
-              {pkg.badge && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
-                  <span className="px-4 py-1.5 bg-canvas text-yellow text-xs font-bold rounded-full shadow-sm border border-yellow/30 whitespace-nowrap">
-                    {pkg.badge}
-                  </span>
-                </div>
-              )}
-
-              {/* Header */}
-              <div className={`p-8 pb-6 ${pkg.highlighted ? "border-b border-white/8" : "border-b border-border"}`}>
-                <h3
-                  className={`font-display text-2xl font-bold mb-1.5 ${
-                    pkg.highlighted ? "text-canvas" : "text-ink"
-                  }`}
-                >
-                  {pkg.name}
-                </h3>
-                <p
-                  className={`text-sm leading-relaxed ${
-                    pkg.highlighted ? "text-white/45" : "text-ink-muted"
-                  }`}
-                >
-                  {pkg.tagline}
-                </p>
-
-                <div className="mt-6 flex items-baseline gap-1">
-                  <span
-                    className={`font-display text-4xl font-bold tracking-tight ${
-                      pkg.highlighted ? "text-canvas" : "text-ink"
-                    }`}
-                  >
-                    {pkg.price}€
-                  </span>
-                  <span
-                    className={`text-sm ml-1 ${
-                      pkg.highlighted ? "text-white/35" : "text-ink-muted"
-                    }`}
-                  >
-                    einmalig
-                  </span>
-                </div>
-
-                {/* Delivery badge */}
-                <div className="mt-4 inline-flex items-center gap-1.5">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    className={pkg.highlighted ? "text-white/40" : "text-ink-muted"}
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                  <span
-                    className={`text-xs font-medium ${
-                      pkg.highlighted ? "text-white/40" : "text-ink-muted"
-                    }`}
-                  >
-                    {pkg.deliveryDays}
-                  </span>
-                </div>
-              </div>
-
-              {/* Features */}
-              <div className="p-8 pt-6 flex-1 flex flex-col">
-                {pkg.includesAll && (
-                  <div
-                    className={`flex items-center gap-2 text-xs font-medium mb-5 pb-5 border-b ${
-                      pkg.highlighted
-                        ? "text-white/50 border-white/8"
-                        : "text-ink-muted border-border"
-                    }`}
-                  >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="17 11 12 6 7 11" />
-                      <polyline points="17 18 12 13 7 18" />
-                    </svg>
-                    Alles aus {pkg.includesAll}, plus:
-                  </div>
-                )}
-
-                <ul className="flex flex-col gap-3 flex-1">
-                  {pkg.features.map((f) => (
-                    <li
-                      key={f}
-                      className={`flex items-start gap-3 text-sm ${
-                        pkg.highlighted ? "text-white/65" : "text-ink-soft"
-                      }`}
-                    >
-                      <span
-                        className={
-                          pkg.highlighted ? "text-white/40" : "text-ink-muted"
-                        }
-                      >
-                        <Check highlighted={pkg.highlighted} />
-                      </span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  onClick={() => {
-                    window.dispatchEvent(
-                      new CustomEvent("selectPackage", { detail: pkg.name })
-                    );
-                    document
-                      .getElementById("kontakt")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className={`mt-8 w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 ${
-                    pkg.highlighted
-                      ? "bg-canvas text-blue font-bold hover:bg-white/90"
-                      : "bg-green text-canvas hover:opacity-85"
-                  }`}
-                >
-                  {pkg.cta}
-                </button>
-              </div>
-            </motion.div>
+            <PackageCard key={pkg.name} pkg={pkg} index={i} inView={inView} />
           ))}
         </div>
 
@@ -273,7 +284,6 @@ export function FPackages() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-10 space-y-4"
         >
-          {/* Trust pills */}
           <div className="flex flex-wrap justify-center gap-2">
             {[
               "Persönlich in Wien",
@@ -293,9 +303,7 @@ export function FPackages() {
             Alle Preise zzgl. 20% MwSt. ·{" "}
             <button
               onClick={() =>
-                document
-                  .getElementById("kontakt")
-                  ?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })
               }
               className="underline underline-offset-2 hover:text-ink transition-colors"
             >

@@ -38,7 +38,7 @@ export function FAddons() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.08 }}
-            className="sm:col-span-2 lg:col-span-2 rounded-2xl border border-border bg-canvas-warm overflow-hidden"
+            className="sm:col-span-2 lg:col-span-2 rounded-2xl border border-border bg-canvas-warm shadow-card overflow-hidden"
           >
             <div className="p-6 border-b border-border">
               <div className="flex items-start gap-4">
@@ -99,7 +99,7 @@ export function FAddons() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.14 }}
-            className="relative rounded-2xl border-2 border-ink bg-canvas overflow-hidden"
+            className="relative rounded-2xl border-2 border-ink bg-canvas shadow-card overflow-hidden"
           >
             <div className="absolute top-4 right-4">
               <span className="px-2.5 py-1 bg-ink text-canvas text-[10px] font-semibold rounded-full">
@@ -140,7 +140,7 @@ export function FAddons() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.2 }}
-            className="flex gap-4 p-6 rounded-2xl border border-border hover:border-border-strong hover:shadow-sm transition-all duration-300"
+            className="flex gap-4 p-6 rounded-2xl border border-border bg-canvas shadow-card hover:shadow-card-hover hover:border-border-strong transition-all duration-300"
           >
             <div className="w-11 h-11 rounded-xl bg-canvas-warm flex items-center justify-center text-ink-soft flex-shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -167,7 +167,7 @@ export function FAddons() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.26 }}
-            className="flex gap-4 p-6 rounded-2xl border border-border hover:border-border-strong hover:shadow-sm transition-all duration-300"
+            className="flex gap-4 p-6 rounded-2xl border border-border bg-canvas shadow-card hover:shadow-card-hover hover:border-border-strong transition-all duration-300"
           >
             <div className="w-11 h-11 rounded-xl bg-canvas-warm flex items-center justify-center text-ink-soft flex-shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -197,7 +197,7 @@ export function FAddons() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.32 }}
-            className="flex gap-4 p-6 rounded-2xl border border-border hover:border-border-strong hover:shadow-sm transition-all duration-300"
+            className="flex gap-4 p-6 rounded-2xl border border-border bg-canvas shadow-card hover:shadow-card-hover hover:border-border-strong transition-all duration-300"
           >
             <div className="w-11 h-11 rounded-xl bg-canvas-warm flex items-center justify-center text-ink-soft flex-shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

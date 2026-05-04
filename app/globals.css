@@ -40,3 +40,18 @@ select:focus-visible {
   outline: 2px solid var(--color-ink);
   outline-offset: 2px;
 }
+
+@layer utilities {
+  .shadow-card {
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px rgb(0 0 0 / 0.06), 0 16px 32px rgb(0 0 0 / 0.03);
+  }
+  .shadow-card-hover {
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.09), 0 20px 48px rgb(0 0 0 / 0.10);
+  }
+  .shadow-blue-glow {
+    box-shadow: 0 0 0 2px rgb(43 111 212 / 0.25), 0 4px 20px rgb(43 111 212 / 0.15), 0 16px 48px rgb(0 0 0 / 0.08);
+  }
+  .shadow-premium {
+    box-shadow: 0 8px 32px rgb(0 0 0 / 0.35), 0 32px 64px rgb(0 0 0 / 0.22), 0 0 0 1px rgb(255 255 255 / 0.06);
+  }
+}

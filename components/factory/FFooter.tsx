@@ -10,8 +10,9 @@ export function FFooter() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <span className="font-display text-canvas text-xl font-bold block mb-3">
-              Geffen FlexCo
+            <span className="font-display text-xl font-black tracking-tight block mb-3">
+              <span className="text-canvas">Web</span>
+              <span className="text-blue">flix</span>
             </span>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs">
               Professionelle Websites für kleine und mittlere Unternehmen in
@@ -81,7 +82,7 @@ export function FFooter() {
         {/* Bottom bar */}
         <div className="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-white/25 text-xs">
-            © {new Date().getFullYear()} Geffen FlexCo · Samuel Geffen · Wien
+            © {new Date().getFullYear()} Webflix · Samuel Geffen · Wien
           </p>
           <div className="flex gap-6">
             {["Impressum", "Datenschutz"].map((link) => (

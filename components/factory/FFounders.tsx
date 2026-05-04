@@ -33,7 +33,7 @@ function FounderCard({
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.2 + index * 0.1 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="flex flex-col p-6 rounded-2xl border border-border bg-canvas shadow-sm hover:shadow-md transition-shadow duration-300"
+      className="flex flex-col p-6 rounded-2xl border border-border bg-canvas shadow-card hover:shadow-card-hover transition-shadow duration-300"
     >
       {/* Avatar */}
       <div className="mb-5">
@@ -79,7 +79,7 @@ export function FFounders() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-24 lg:py-32 bg-canvas" ref={ref}>
+    <section className="relative py-24 lg:py-32 bg-canvas" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
@@ -138,6 +138,7 @@ export function FFounders() {
           </div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-canvas-warm pointer-events-none" />
     </section>
   );
 }

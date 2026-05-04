@@ -31,12 +31,9 @@ export function FNav() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="flex items-center gap-2 group"
         >
-          <span
-            className={`font-display text-lg font-bold tracking-tight transition-colors ${
-              scrolled ? "text-ink" : "text-canvas"
-            }`}
-          >
-            Geffen FlexCo
+          <span className="font-display text-xl font-black tracking-tight">
+            <span className={scrolled ? "text-ink" : "text-canvas"}>Web</span>
+            <span className="text-blue">flix</span>
           </span>
         </button>
 

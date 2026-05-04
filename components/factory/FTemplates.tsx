@@ -341,7 +341,7 @@ function TemplateCard({
 
       <Link
         href={`/vorlagen/${t.slug}`}
-        className="block rounded-xl overflow-hidden border border-border shadow-sm group-hover:shadow-lg group-hover:border-border-strong transition-all duration-300 mb-4 relative"
+        className="block rounded-xl overflow-hidden border border-border shadow-card group-hover:shadow-card-hover group-hover:border-border-strong transition-all duration-300 mb-4 relative"
       >
         {/* Chrome bar */}
         <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#EDECEB] border-b border-[#DDDBD7]">
@@ -386,7 +386,7 @@ export function FTemplates() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-24 lg:py-32 bg-canvas-warm" ref={ref}>
+    <section className="relative py-24 lg:py-32 bg-canvas-warm" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -436,6 +436,7 @@ export function FTemplates() {
           Alle Beispiele dienen der Veranschaulichung — keine echten Kundenprojekte. Ihre Website wird individuell auf Ihren Betrieb zugeschnitten.
         </motion.p>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-canvas-dark pointer-events-none" />
     </section>
   );
 }

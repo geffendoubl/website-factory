@@ -47,7 +47,7 @@ export function FPain() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-24 lg:py-32 bg-canvas" ref={ref}>
+    <section className="relative py-24 lg:py-32 bg-canvas" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -79,7 +79,7 @@ export function FPain() {
                 ease: "easeOut",
                 delay: 0.1 + i * 0.07,
               }}
-              className="group p-6 rounded-2xl border border-border hover:border-border-strong hover:shadow-sm transition-all duration-300 bg-canvas"
+              className="group p-6 rounded-2xl border border-border bg-canvas shadow-card hover:shadow-card-hover hover:border-border-strong transition-all duration-300"
             >
               <div className="w-10 h-10 rounded-xl bg-blue-soft flex items-center justify-center mb-4 text-blue group-hover:bg-blue group-hover:text-canvas transition-colors duration-300">
                 {card.icon}
@@ -113,6 +113,7 @@ export function FPain() {
           </button>
         </motion.div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-canvas-warm pointer-events-none" />
     </section>
   );
 }

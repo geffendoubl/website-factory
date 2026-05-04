@@ -80,7 +80,7 @@ export function FWhyUs() {
             className="lg:sticky lg:top-28"
           >
             <p className="text-ink-muted text-sm font-medium uppercase tracking-widest mb-4">
-              Warum Geffen FlexCo
+              Warum Webflix
             </p>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-ink leading-[1.15] mb-6">
               Kein Agentur-
@@ -101,7 +101,7 @@ export function FWhyUs() {
                 wird unnötig kompliziert gemacht. Das kann einfacher gehen."
               </p>
               <p className="text-ink-muted text-sm mt-3">
-                Samuel Geffen · Gründer, Geffen FlexCo · Wien
+                Samuel Geffen · Gründer, Webflix · Wien
               </p>
             </div>
           </motion.div>
@@ -118,7 +118,7 @@ export function FWhyUs() {
                   ease: [0.22, 1, 0.36, 1],
                   delay: 0.1 + i * 0.07,
                 }}
-                className="p-5 rounded-2xl bg-canvas border border-border hover:shadow-sm transition-shadow"
+                className="p-5 rounded-2xl bg-canvas border border-border shadow-card hover:shadow-card-hover transition-shadow duration-300"
               >
                 <div className="w-9 h-9 rounded-lg bg-green-soft flex items-center justify-center mb-4 text-green">
                   {reason.icon}

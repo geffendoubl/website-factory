@@ -26,7 +26,7 @@ export function FProcess() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="ablauf" className="py-24 lg:py-32 bg-canvas-dark" ref={ref}>
+    <section id="ablauf" className="relative py-24 lg:py-32 bg-canvas-dark" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -92,6 +92,7 @@ export function FProcess() {
           </button>
         </motion.div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-b from-transparent to-canvas pointer-events-none" />
     </section>
   );
 }
