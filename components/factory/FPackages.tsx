@@ -137,13 +137,13 @@ export function FPackages() {
               }}
               className={`relative flex flex-col rounded-2xl ${
                 pkg.highlighted
-                  ? "bg-canvas-dark shadow-2xl"
+                  ? "bg-accent shadow-2xl shadow-accent/20"
                   : "bg-canvas border border-border"
               }`}
             >
               {pkg.badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
-                  <span className="px-4 py-1.5 bg-canvas text-ink text-xs font-semibold rounded-full shadow-sm border border-border whitespace-nowrap">
+                  <span className="px-4 py-1.5 bg-canvas text-accent text-xs font-bold rounded-full shadow-sm border border-accent/20 whitespace-nowrap">
                     {pkg.badge}
                   </span>
                 </div>
@@ -256,8 +256,8 @@ export function FPackages() {
                   }}
                   className={`mt-8 w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 ${
                     pkg.highlighted
-                      ? "bg-canvas text-ink hover:bg-white/90"
-                      : "bg-ink text-canvas hover:opacity-80"
+                      ? "bg-canvas text-accent font-bold hover:bg-white/90"
+                      : "bg-accent text-canvas hover:opacity-85"
                   }`}
                 >
                   {pkg.cta}

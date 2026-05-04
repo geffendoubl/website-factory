@@ -9,9 +9,12 @@
   --color-ink-muted: #888580;
   --color-canvas: #FFFFFF;
   --color-canvas-warm: #F4F3F0;
-  --color-canvas-dark: #0A0A0A;
+  --color-canvas-dark: #1A1008;
   --color-border: #E4E2DD;
   --color-border-strong: #C8C5BE;
+
+  --color-accent: #D4622A;
+  --color-accent-soft: #FDF1EB;
 }
 
 html {
