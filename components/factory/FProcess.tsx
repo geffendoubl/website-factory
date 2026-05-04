@@ -44,7 +44,7 @@ export function FProcess() {
 
         <div className="grid md:grid-cols-3 gap-10 md:gap-8 relative">
           {/* Connector line (desktop) */}
-          <div className="hidden md:block absolute top-7 left-[16.67%] right-[16.67%] h-px bg-accent/30" />
+          <div className="hidden md:block absolute top-7 left-[16.67%] right-[16.67%] h-px bg-blue/30" />
 
           {steps.map((step, i) => (
             <motion.div
@@ -59,7 +59,7 @@ export function FProcess() {
               className="relative"
             >
               {/* Step number circle */}
-              <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center mb-6 relative z-10 shadow-lg shadow-accent/25">
+              <div className="w-14 h-14 rounded-full bg-blue flex items-center justify-center mb-6 relative z-10 shadow-lg shadow-blue/25">
                 <span className="font-display text-canvas text-lg font-bold">
                   {step.number}
                 </span>
@@ -86,7 +86,7 @@ export function FProcess() {
             onClick={() =>
               document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })
             }
-            className="px-7 py-3.5 bg-accent text-canvas rounded-full font-semibold text-sm hover:opacity-85 transition-opacity flex-shrink-0"
+            className="px-7 py-3.5 bg-blue text-canvas rounded-full font-semibold text-sm hover:opacity-85 transition-opacity flex-shrink-0"
           >
             Jetzt starten
           </button>

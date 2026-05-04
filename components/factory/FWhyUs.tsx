@@ -120,7 +120,7 @@ export function FWhyUs() {
                 }}
                 className="p-5 rounded-2xl bg-canvas border border-border hover:shadow-sm transition-shadow"
               >
-                <div className="w-9 h-9 rounded-lg bg-accent-soft flex items-center justify-center mb-4 text-accent">
+                <div className="w-9 h-9 rounded-lg bg-green-soft flex items-center justify-center mb-4 text-green">
                   {reason.icon}
                 </div>
                 <h3 className="font-semibold text-ink text-base mb-2">

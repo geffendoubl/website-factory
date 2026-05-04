@@ -62,7 +62,7 @@ export function FTrust() {
               transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.07 }}
               className="flex items-center gap-3 md:px-8 first:pl-0 last:pr-0"
             >
-              <div className="w-9 h-9 rounded-lg bg-accent-soft border border-accent/15 flex items-center justify-center text-accent flex-shrink-0">
+              <div className="w-9 h-9 rounded-lg bg-green-soft border border-green/15 flex items-center justify-center text-green flex-shrink-0">
                 {s.icon}
               </div>
               <div>

@@ -49,7 +49,7 @@ function FounderCard({
         <h3 className="font-semibold text-ink text-lg leading-tight mb-1">
           {founder.name}
         </h3>
-        <p className="text-accent text-xs font-semibold uppercase tracking-wide">
+        <p className="text-yellow text-xs font-semibold uppercase tracking-wide">
           {founder.role}
         </p>
       </div>
@@ -90,7 +90,7 @@ export function FFounders() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="lg:sticky lg:top-28"
           >
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
+            <p className="text-yellow text-sm font-semibold uppercase tracking-widest mb-4">
               Persönlich. Direkt. Wien.
             </p>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-ink leading-[1.15] mb-6">
@@ -109,7 +109,7 @@ export function FFounders() {
 
             {/* Local trust line */}
             <div className="flex items-center gap-2 text-ink-muted text-sm mb-10">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+              <div className="w-1.5 h-1.5 rounded-full bg-yellow" />
               Persönlich in Wien und Umgebung vor Ort.
             </div>
 
@@ -119,7 +119,7 @@ export function FFounders() {
                   .getElementById("kontakt")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="px-7 py-3.5 rounded-full bg-accent text-canvas text-sm font-semibold hover:opacity-85 transition-opacity"
+              className="px-7 py-3.5 rounded-full bg-green text-canvas text-sm font-semibold hover:opacity-85 transition-opacity"
             >
               Kostenlose Erstberatung starten
             </button>

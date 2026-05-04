@@ -35,10 +35,10 @@ const industries = [
 ];
 
 const trustPills = [
-  "Persönlich in Wien",
-  "Klare Fixpreise",
-  "Keine Technikkenntnisse nötig",
-  "5–7 Werktage",
+  { label: "Persönlich in Wien", dot: "bg-blue" },
+  { label: "Klare Fixpreise", dot: "bg-yellow" },
+  { label: "Keine Technikkenntnisse nötig", dot: "bg-green" },
+  { label: "5–7 Werktage", dot: "bg-blue" },
 ];
 
 export function FHero() {
@@ -47,18 +47,18 @@ export function FHero() {
 
   return (
     <section className="relative min-h-screen bg-canvas-dark flex flex-col justify-center overflow-hidden">
-      {/* Warm glow behind right side */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,98,42,0.12)_0%,_transparent_55%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(212,98,42,0.06)_0%,_transparent_50%)]" />
+      {/* Warm blue glow top-right */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(43,111,212,0.15)_0%,_transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(22,163,74,0.07)_0%,_transparent_50%)]" />
 
       <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-20 grid lg:grid-cols-2 gap-14 items-center">
         {/* Left: Copy */}
         <div>
           {/* Eyebrow */}
           <FadeUp delay={0}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/30 bg-accent/10 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              <span className="text-accent text-xs font-semibold tracking-wide">Professionelle Websites für Wien</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue/30 bg-blue/10 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue" />
+              <span className="text-blue text-xs font-semibold tracking-wide">Professionelle Websites für Wien</span>
             </div>
           </FadeUp>
 
@@ -68,7 +68,7 @@ export function FHero() {
               <br />
               für Ihren Betrieb —
               <br />
-              <span className="text-accent">ab 490€, in Tagen online.</span>
+              <span className="text-yellow">ab 490€, in Tagen online.</span>
             </h1>
           </FadeUp>
 
@@ -86,7 +86,7 @@ export function FHero() {
               {industries.map((ind) => (
                 <span
                   key={ind}
-                  className="px-2.5 py-1 rounded-full border border-accent/20 bg-accent/8 text-white/55 text-xs"
+                  className="px-2.5 py-1 rounded-full border border-white/12 text-white/40 text-xs"
                 >
                   {ind}
                 </span>
@@ -99,7 +99,7 @@ export function FHero() {
             <div className="flex flex-wrap gap-3 mb-10">
               <button
                 onClick={() => scrollTo("kontakt")}
-                className="px-7 py-3.5 bg-accent text-canvas rounded-full font-semibold text-base hover:opacity-85 transition-opacity"
+                className="px-7 py-3.5 bg-blue text-canvas rounded-full font-semibold text-base hover:opacity-85 transition-opacity"
               >
                 Unverbindlich anfragen
               </button>
@@ -112,16 +112,16 @@ export function FHero() {
             </div>
           </FadeUp>
 
-          {/* Trust pills */}
+          {/* Trust pills — tricolor dots */}
           <FadeUp delay={0.36}>
             <div className="flex flex-wrap gap-2">
               {trustPills.map((pill) => (
                 <span
-                  key={pill}
+                  key={pill.label}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/45 text-xs font-medium"
                 >
-                  <span className="w-1 h-1 rounded-full bg-accent/60" />
-                  {pill}
+                  <span className={`w-1 h-1 rounded-full ${pill.dot} opacity-80`} />
+                  {pill.label}
                 </span>
               ))}
             </div>
@@ -136,7 +136,7 @@ export function FHero() {
           className="hidden lg:block"
         >
           <div className="relative">
-            <div className="absolute -inset-8 bg-accent/8 rounded-3xl blur-3xl" />
+            <div className="absolute -inset-8 bg-blue/8 rounded-3xl blur-3xl" />
             <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#1A1A1A]">
               {/* Chrome */}
               <div className="flex items-center gap-2 px-4 py-3 border-b border-white/8 bg-[#141414]">
@@ -156,25 +156,25 @@ export function FHero() {
                   <div className="flex gap-3 items-center">
                     <div className="h-2 w-10 bg-gray-200 rounded" />
                     <div className="h-2 w-10 bg-gray-200 rounded" />
-                    <div className="h-6 w-20 rounded-full" style={{ backgroundColor: "#D4622A" }} />
+                    <div className="h-6 w-20 rounded-full" style={{ backgroundColor: "#2B6FD4" }} />
                   </div>
                 </div>
                 <div className="px-5 pt-6 pb-4" style={{ backgroundColor: "#1A1008" }}>
                   <div className="h-3 w-3/4 bg-white/20 rounded mb-2" />
-                  <div className="h-3 w-1/2 bg-white/15 rounded mb-4" />
+                  <div className="h-3 w-1/2 rounded mb-4" style={{ backgroundColor: "#CA8A0466" }} />
                   <div className="h-2 w-full bg-white/8 rounded mb-1.5" />
                   <div className="h-2 w-4/5 bg-white/8 rounded mb-5" />
                   <div className="flex gap-2">
-                    <div className="h-7 w-28 rounded-full" style={{ backgroundColor: "#D4622A" }} />
+                    <div className="h-7 w-28 rounded-full" style={{ backgroundColor: "#2B6FD4" }} />
                     <div className="h-7 w-24 bg-white/10 border border-white/20 rounded-full" />
                   </div>
                 </div>
                 <div className="px-5 py-5">
                   <div className="h-2.5 w-32 bg-gray-900 rounded mb-4" />
                   <div className="grid grid-cols-3 gap-2">
-                    {[1,2,3].map(i => (
+                    {(["#EEF4FD","#FEFCE8","#F0FDF4"] as const).map((bg, i) => (
                       <div key={i} className="p-3 border border-gray-100 rounded-lg">
-                        <div className="w-5 h-5 rounded mb-2" style={{ backgroundColor: "#FDF1EB" }} />
+                        <div className="w-5 h-5 rounded mb-2" style={{ backgroundColor: bg }} />
                         <div className="h-1.5 w-full bg-gray-100 rounded mb-1" />
                         <div className="h-1.5 w-2/3 bg-gray-100 rounded" />
                       </div>
@@ -182,13 +182,13 @@ export function FHero() {
                   </div>
                 </div>
                 <div className="px-5 pb-5">
-                  <div className="rounded-xl p-4 flex gap-4 items-center" style={{ backgroundColor: "#FDF1EB" }}>
-                    <div className="w-10 h-10 rounded-full flex-shrink-0" style={{ backgroundColor: "#D4622A", opacity: 0.3 }} />
+                  <div className="rounded-xl p-4 flex gap-4 items-center" style={{ backgroundColor: "#F0FDF4" }}>
+                    <div className="w-10 h-10 rounded-full flex-shrink-0" style={{ backgroundColor: "#16A34A55" }} />
                     <div className="flex-1">
                       <div className="h-1.5 w-3/4 bg-gray-300 rounded mb-1.5" />
                       <div className="h-1.5 w-1/2 bg-gray-200 rounded" />
                     </div>
-                    <div className="h-7 w-20 rounded-full" style={{ backgroundColor: "#D4622A" }} />
+                    <div className="h-7 w-20 rounded-full" style={{ backgroundColor: "#16A34A" }} />
                   </div>
                 </div>
               </div>
@@ -209,7 +209,7 @@ export function FHero() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent/40">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-white/20">
             <path d="M12 5v14M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </motion.div>

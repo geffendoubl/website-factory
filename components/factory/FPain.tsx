@@ -81,7 +81,7 @@ export function FPain() {
               }}
               className="group p-6 rounded-2xl border border-border hover:border-border-strong hover:shadow-sm transition-all duration-300 bg-canvas"
             >
-              <div className="w-10 h-10 rounded-xl bg-accent-soft flex items-center justify-center mb-4 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors duration-300">
+              <div className="w-10 h-10 rounded-xl bg-blue-soft flex items-center justify-center mb-4 text-blue group-hover:bg-blue group-hover:text-canvas transition-colors duration-300">
                 {card.icon}
               </div>
               <h3 className="font-semibold text-ink text-base mb-2">
@@ -97,7 +97,7 @@ export function FPain() {
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.42 }}
-          className="mt-8 p-5 rounded-2xl bg-accent-soft border border-accent/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          className="mt-8 p-5 rounded-2xl bg-green-soft border border-green/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
         >
           <p className="text-ink-soft text-base leading-relaxed">
             <span className="text-ink font-semibold">Einfache Firmenwebsites ohne komplizierte Systeme.</span>{" "}
@@ -107,7 +107,7 @@ export function FPain() {
             onClick={() =>
               document.getElementById("pakete")?.scrollIntoView({ behavior: "smooth" })
             }
-            className="shrink-0 px-5 py-2.5 rounded-full bg-accent text-canvas text-sm font-semibold hover:opacity-85 transition-opacity"
+            className="shrink-0 px-5 py-2.5 rounded-full bg-green text-canvas text-sm font-semibold hover:opacity-85 transition-opacity"
           >
             Preise ansehen
           </button>

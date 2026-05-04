@@ -36,7 +36,7 @@ function PillGroup({
           onClick={() => onChange(opt === value ? "" : opt)}
           className={`px-4 py-2 rounded-full text-xs font-medium border transition-colors ${
             value === opt
-              ? "bg-accent text-canvas border-accent"
+              ? "bg-blue text-canvas border-blue"
               : "border-border text-ink-soft hover:border-border-strong"
           }`}
         >
@@ -351,7 +351,7 @@ export function FCTA() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full py-4 bg-accent text-canvas rounded-xl font-semibold text-sm hover:opacity-85 transition-opacity disabled:opacity-60"
+                  className="w-full py-4 bg-blue text-canvas rounded-xl font-semibold text-sm hover:opacity-85 transition-opacity disabled:opacity-60"
                 >
                   {status === "loading" ? "Wird gesendet …" : "Anfrage absenden"}
                 </button>

@@ -13,8 +13,12 @@
   --color-border: #E4E2DD;
   --color-border-strong: #C8C5BE;
 
-  --color-accent: #D4622A;
-  --color-accent-soft: #FDF1EB;
+  --color-blue: #2B6FD4;
+  --color-blue-soft: #EEF4FD;
+  --color-yellow: #CA8A04;
+  --color-yellow-soft: #FEFCE8;
+  --color-green: #16A34A;
+  --color-green-soft: #F0FDF4;
 }
 
 html {

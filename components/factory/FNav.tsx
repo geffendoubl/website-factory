@@ -65,7 +65,7 @@ export function FNav() {
             onClick={() => scrollTo("kontakt")}
             className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
               scrolled
-                ? "bg-accent text-canvas hover:opacity-85"
+                ? "bg-blue text-canvas hover:opacity-85"
                 : "bg-canvas text-ink hover:bg-canvas/90"
             }`}
           >
@@ -118,7 +118,7 @@ export function FNav() {
           ))}
           <button
             onClick={() => scrollTo("kontakt")}
-            className="mt-2 px-5 py-3 rounded-full bg-accent text-canvas text-sm font-semibold text-center"
+            className="mt-2 px-5 py-3 rounded-full bg-blue text-canvas text-sm font-semibold text-center"
           >
             Website besprechen
           </button>
