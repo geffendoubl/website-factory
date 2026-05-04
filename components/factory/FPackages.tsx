@@ -263,7 +263,7 @@ export function FPackages() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="pakete" className="relative py-24 lg:py-32 bg-canvas-warm" ref={ref}>
+    <section id="pakete" className="py-24 lg:py-32 bg-canvas-warm" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -292,7 +292,7 @@ export function FPackages() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="relative z-10 mt-10 space-y-4"
+          className="mt-10 space-y-4"
         >
           <div className="flex flex-wrap justify-center gap-2">
             {[
@@ -339,7 +339,6 @@ export function FPackages() {
           </div>
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(244,243,240,0), #FFFFFF)" }} />
     </section>
   );
 }

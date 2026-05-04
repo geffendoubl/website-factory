@@ -26,7 +26,7 @@ export function FProcess() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="ablauf" className="relative py-24 lg:py-32 bg-canvas-dark" ref={ref}>
+    <section id="ablauf" className="py-24 lg:py-32 bg-canvas-dark" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ export function FProcess() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="relative z-10 mt-16 pt-10 border-t border-white/8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          className="mt-16 pt-10 border-t border-white/8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
         >
           <p className="text-white/40 text-base max-w-md">
             Persönlich in Wien betreut. Digital überall erreichbar.
@@ -92,7 +92,6 @@ export function FProcess() {
           </button>
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-44 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(26,16,8,0), #FFFFFF)" }} />
     </section>
   );
 }

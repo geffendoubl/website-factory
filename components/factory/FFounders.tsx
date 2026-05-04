@@ -79,7 +79,7 @@ export function FFounders() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 bg-canvas" ref={ref}>
+    <section className="py-24 lg:py-32 bg-canvas" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
@@ -138,7 +138,6 @@ export function FFounders() {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0), #F4F3F0)" }} />
     </section>
   );
 }

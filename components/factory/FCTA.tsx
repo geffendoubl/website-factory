@@ -107,7 +107,7 @@ export function FCTA() {
   };
 
   return (
-    <section id="kontakt" className="relative py-24 lg:py-32 bg-canvas-warm" ref={ref}>
+    <section id="kontakt" className="py-24 lg:py-32 bg-canvas-warm" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left */}
@@ -419,7 +419,6 @@ export function FCTA() {
           </motion.div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(244,243,240,0), #1A1008)" }} />
     </section>
   );
 }

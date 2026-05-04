@@ -69,7 +69,7 @@ export function FWhyUs() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 bg-canvas-warm" ref={ref}>
+    <section className="py-24 lg:py-32 bg-canvas-warm" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left */}
@@ -134,7 +134,6 @@ export function FWhyUs() {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(244,243,240,0), #FFFFFF)" }} />
     </section>
   );
 }

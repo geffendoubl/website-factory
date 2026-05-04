@@ -386,7 +386,7 @@ export function FTemplates() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 bg-canvas-warm" ref={ref}>
+    <section className="py-24 lg:py-32 bg-canvas-warm" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -431,12 +431,11 @@ export function FTemplates() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="relative z-10 mt-10 text-center text-ink-muted text-sm"
+          className="mt-10 text-center text-ink-muted text-sm"
         >
           Alle Beispiele dienen der Veranschaulichung — keine echten Kundenprojekte. Ihre Website wird individuell auf Ihren Betrieb zugeschnitten.
         </motion.p>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-44 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(244,243,240,0), #1A1008)" }} />
     </section>
   );
 }
