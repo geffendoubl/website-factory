@@ -6,6 +6,7 @@ import { FPackages } from "@/components/factory/FPackages";
 import { FTemplates } from "@/components/factory/FTemplates";
 import { FAddons } from "@/components/factory/FAddons";
 import { FProcess } from "@/components/factory/FProcess";
+import { FFounders } from "@/components/factory/FFounders";
 import { FWhyUs } from "@/components/factory/FWhyUs";
 import { FFAQ } from "@/components/factory/FFAQ";
 import { FCTA } from "@/components/factory/FCTA";
@@ -24,6 +25,7 @@ export default function Home() {
         <FAddons />
         <FTemplates />
         <FProcess />
+        <FFounders />
         <FWhyUs />
         <FFAQ />
         <FCTA />
