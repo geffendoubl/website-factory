@@ -5,6 +5,48 @@ import { motion, useInView } from "framer-motion";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+const industries = [
+  "Bäckerei",
+  "Café & Restaurant",
+  "Installateur & Handwerker",
+  "Reinigung & Gebäudeservice",
+  "Fahrradladen",
+  "Kosmetikstudio",
+  "Arztpraxis",
+  "Dachdecker & Bau",
+  "Lokales Geschäft",
+  "Sonstiges",
+];
+
+function PillGroup({
+  options,
+  value,
+  onChange,
+}: {
+  options: string[];
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {options.map((opt) => (
+        <button
+          key={opt}
+          type="button"
+          onClick={() => onChange(opt === value ? "" : opt)}
+          className={`px-4 py-2 rounded-full text-xs font-medium border transition-colors ${
+            value === opt
+              ? "bg-ink text-canvas border-ink"
+              : "border-border text-ink-soft hover:border-border-strong"
+          }`}
+        >
+          {opt}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function FCTA() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -12,6 +54,10 @@ export function FCTA() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [selectedPackage, setSelectedPackage] = useState("");
+  const [branche, setBranche] = useState("");
+  const [hasWebsite, setHasWebsite] = useState("");
+  const [wantsPhotos, setWantsPhotos] = useState("");
+  const [contactPref, setContactPref] = useState("");
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -28,11 +74,14 @@ export function FCTA() {
 
     const form = e.currentTarget;
     const data = {
-      name: (form.elements.namedItem("name") as HTMLInputElement).value,
       company: (form.elements.namedItem("company") as HTMLInputElement).value,
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
-      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      branche,
+      hasWebsite,
+      wantsPhotos,
+      contactPref,
       package: selectedPackage,
     };
 
@@ -170,39 +219,39 @@ export function FCTA() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="bg-canvas rounded-2xl border border-border p-8 flex flex-col gap-5"
+                className="bg-canvas rounded-2xl border border-border p-8 flex flex-col gap-6"
               >
                 {/* Package selector */}
                 <div>
                   <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
                     Paket-Interesse (optional)
                   </label>
-                  <div className="flex flex-wrap gap-2">
-                    {["Starter", "Business", "Premium", "Noch unklar"].map(
-                      (pkg) => (
-                        <button
-                          key={pkg}
-                          type="button"
-                          onClick={() =>
-                            setSelectedPackage(pkg === selectedPackage ? "" : pkg)
-                          }
-                          className={`px-4 py-2 rounded-full text-xs font-medium border transition-colors ${
-                            selectedPackage === pkg
-                              ? "bg-ink text-canvas border-ink"
-                              : "border-border text-ink-soft hover:border-border-strong"
-                          }`}
-                        >
-                          {pkg}
-                        </button>
-                      )
-                    )}
-                  </div>
+                  <PillGroup
+                    options={["Starter", "Business", "Premium", "Noch unklar"]}
+                    value={selectedPackage}
+                    onChange={setSelectedPackage}
+                  />
                 </div>
 
+                <div className="h-px bg-border" />
+
+                {/* Firmenname + Ansprechpartner */}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
-                      Name *
+                      Firmenname *
+                    </label>
+                    <input
+                      name="company"
+                      required
+                      type="text"
+                      placeholder="Muster GmbH"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-canvas text-ink text-sm placeholder-ink-muted focus:border-border-strong outline-none transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
+                      Ansprechpartner *
                     </label>
                     <input
                       name="name"
@@ -212,23 +261,13 @@ export function FCTA() {
                       className="w-full px-4 py-3 rounded-xl border border-border bg-canvas text-ink text-sm placeholder-ink-muted focus:border-border-strong outline-none transition-colors"
                     />
                   </div>
-                  <div>
-                    <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
-                      Unternehmen
-                    </label>
-                    <input
-                      name="company"
-                      type="text"
-                      placeholder="Muster GmbH"
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-canvas text-ink text-sm placeholder-ink-muted focus:border-border-strong outline-none transition-colors"
-                    />
-                  </div>
                 </div>
 
+                {/* Telefon + E-Mail */}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
-                      Telefon
+                      Telefonnummer
                     </label>
                     <input
                       name="phone"
@@ -251,15 +290,57 @@ export function FCTA() {
                   </div>
                 </div>
 
+                {/* Branche */}
                 <div>
                   <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
-                    Kurze Beschreibung
+                    Branche auswählen
                   </label>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    placeholder="Was macht Ihr Betrieb? Was wünschen Sie sich für Ihre Website?"
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-canvas text-ink text-sm placeholder-ink-muted focus:border-border-strong outline-none transition-colors resize-none"
+                  <select
+                    value={branche}
+                    onChange={(e) => setBranche(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-canvas text-ink text-sm focus:border-border-strong outline-none transition-colors appearance-none"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888580' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 16px center" }}
+                  >
+                    <option value="">Bitte wählen …</option>
+                    {industries.map((ind) => (
+                      <option key={ind} value={ind}>{ind}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Haben Sie bereits eine Website? */}
+                <div>
+                  <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
+                    Haben Sie bereits eine Website?
+                  </label>
+                  <PillGroup
+                    options={["Ja", "Nein"]}
+                    value={hasWebsite}
+                    onChange={setHasWebsite}
+                  />
+                </div>
+
+                {/* Fotos */}
+                <div>
+                  <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
+                    Möchten Sie, dass wir auch Fotos machen?
+                  </label>
+                  <PillGroup
+                    options={["Ja", "Nein"]}
+                    value={wantsPhotos}
+                    onChange={setWantsPhotos}
+                  />
+                </div>
+
+                {/* Bevorzugter Kontakt */}
+                <div>
+                  <label className="block text-xs font-medium text-ink-muted mb-2 uppercase tracking-wide">
+                    Bevorzugter Kontakt
+                  </label>
+                  <PillGroup
+                    options={["Rückruf", "WhatsApp", "Vor-Ort-Termin"]}
+                    value={contactPref}
+                    onChange={setContactPref}
                   />
                 </div>
 
@@ -272,9 +353,7 @@ export function FCTA() {
                   disabled={status === "loading"}
                   className="w-full py-4 bg-ink text-canvas rounded-xl font-semibold text-sm hover:bg-ink-soft transition-colors disabled:opacity-60"
                 >
-                  {status === "loading"
-                    ? "Wird gesendet …"
-                    : "Anfrage absenden"}
+                  {status === "loading" ? "Wird gesendet …" : "Anfrage absenden"}
                 </button>
 
                 <p className="text-ink-muted text-sm text-center">
