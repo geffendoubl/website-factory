@@ -77,7 +77,7 @@ export function FProcess() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="mt-16 pt-10 border-t border-white/8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          className="relative z-10 mt-16 pt-10 border-t border-white/8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
         >
           <p className="text-white/40 text-base max-w-md">
             Persönlich in Wien betreut. Digital überall erreichbar.
@@ -92,7 +92,7 @@ export function FProcess() {
           </button>
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-b from-transparent to-canvas pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-44 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(26,16,8,0), #FFFFFF)" }} />
     </section>
   );
 }

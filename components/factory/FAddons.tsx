@@ -11,7 +11,7 @@ export function FAddons() {
     document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section className="py-24 lg:py-32 bg-canvas" ref={ref}>
+    <section className="relative py-24 lg:py-32 bg-canvas" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -241,6 +241,7 @@ export function FAddons() {
           </button>
         </motion.div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0), #F4F3F0)" }} />
     </section>
   );
 }

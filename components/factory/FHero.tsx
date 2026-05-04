@@ -215,7 +215,7 @@ export function FHero() {
         </motion.div>
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-canvas to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none" style={{ background: "linear-gradient(to top, #FFFFFF, rgba(26,16,8,0))" }} />
     </section>
   );
 }

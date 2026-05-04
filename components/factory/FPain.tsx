@@ -113,7 +113,7 @@ export function FPain() {
           </button>
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-canvas-warm pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0), #F4F3F0)" }} />
     </section>
   );
 }

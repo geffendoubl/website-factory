@@ -79,7 +79,7 @@ export function FFAQ() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-canvas" ref={ref}>
+    <section id="faq" className="relative py-24 lg:py-32 bg-canvas" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-[1fr_1.8fr] gap-16 items-start">
           {/* Left */}
@@ -129,6 +129,7 @@ export function FFAQ() {
           </motion.div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0), #F4F3F0)" }} />
     </section>
   );
 }

@@ -431,12 +431,12 @@ export function FTemplates() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-10 text-center text-ink-muted text-sm"
+          className="relative z-10 mt-10 text-center text-ink-muted text-sm"
         >
           Alle Beispiele dienen der Veranschaulichung — keine echten Kundenprojekte. Ihre Website wird individuell auf Ihren Betrieb zugeschnitten.
         </motion.p>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-canvas-dark pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-44 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(244,243,240,0), #1A1008)" }} />
     </section>
   );
 }
