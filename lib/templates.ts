@@ -27,33 +27,6 @@ export type Template = {
 
 export const templates: Template[] = [
   {
-    slug: "cafe-restaurant",
-    industry: "Café & Restaurant",
-    benefit: "Speisekarte, Reservierung und Öffnungszeiten — auf einen Blick.",
-    url: "cafe-bergmann.at",
-    brand: "Café Bergmann",
-    tagline: "Frühstück · Mittagskarte · Kaffee",
-    headline: "Frisch gebacken, täglich für Sie da",
-    subline: "Warme Speisen, hausgemachte Kuchen und der beste Kaffee im Grätzl.",
-    phone: "+43 1 234 5678",
-    services: [
-      { label: "Frühstückskarte", detail: "Täglich ab 7:00 Uhr — von Rührei bis Granola, hausgemachte Aufstriche inklusive.", price: "ab 7,50€" },
-      { label: "Mittagsmenü", detail: "Montag bis Freitag ab 11:30 — zwei Gänge mit wöchentlich wechselnden Gerichten.", price: "ab 11,90€" },
-      { label: "Catering & Events", detail: "Wir kommen zu Ihnen — für Firmenveranstaltungen, Geburtstage und private Feiern.", price: "Auf Anfrage" },
-    ],
-    cta: "Tisch reservieren",
-    secondaryCta: "Speisekarte ansehen",
-    bg: "#2A1A0E",
-    accent: "#B5622A",
-    imageBg: "#5C3317",
-    badge: null,
-    hours: "Mo–Sa  7:00–18:00  ·  So  8:00–14:00",
-    trust: ["Seit 2009", "Wien, 7. Bezirk", "Frisch & hausgemacht"],
-    about: "Das Café Bergmann ist seit 2009 ein fester Bestandteil des 7. Bezirks. Wir stehen für ehrliche Küche, frisch zubereitete Speisen und eine Atmosphäre, in der man sich wohlfühlt — egal ob zum schnellen Frühstück oder zum langen Mittagessen.",
-    address: "Neubaugasse 42, 1070 Wien",
-    email: "hallo@cafe-bergmann.at",
-  },
-  {
     slug: "installateur",
     industry: "Installateur & Handwerker",
     benefit: "Notfallnummer prominent, Leistungen klar, Anfrage in Sekunden.",
