@@ -162,19 +162,29 @@ function PackageCard({ pkg, index, inView }: { pkg: Package; index: number; inVi
           </span>
         </div>
 
-        <div className="mt-4 inline-flex items-center gap-1.5">
-          <svg
-            width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-            style={P ? { color: "rgba(255,255,255,0.28)" } : { color: "#888580" }}
-          >
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
+        <div className="mt-4 flex items-center gap-3 flex-wrap">
+          <div className="inline-flex items-center gap-1.5">
+            <svg
+              width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+              style={P ? { color: "rgba(255,255,255,0.28)" } : { color: "#888580" }}
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span
+              className="text-xs font-medium"
+              style={P ? { color: "rgba(255,255,255,0.28)" } : { color: "#888580" }}
+            >
+              {pkg.deliveryDays}
+            </span>
+          </div>
+          {/* Klarna monthly hint */}
           <span
-            className="text-xs font-medium"
-            style={P ? { color: "rgba(255,255,255,0.28)" } : { color: "#888580" }}
+            className="px-2 py-0.5 rounded text-[10px] font-black text-black"
+            style={{ background: "#FFB3C7" }}
+            title="Ratenzahlung mit Klarna verfügbar"
           >
-            {pkg.deliveryDays}
+            Klarna
           </span>
         </div>
       </div>
@@ -310,6 +320,23 @@ export function FPackages() {
               Individuelles Angebot anfragen
             </button>
           </p>
+          {/* Payment methods */}
+          <div className="flex items-center justify-center gap-4 flex-wrap pt-2">
+            <span className="text-ink-muted text-xs">Sichere Zahlung via</span>
+            <div className="flex items-center gap-1.5">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span className="text-xs font-bold" style={{ color: "#635BFF" }}>Stripe</span>
+            </div>
+            <span className="text-border">·</span>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded text-[11px] font-black text-black" style={{ background: "#FFB3C7" }}>
+                Klarna
+              </span>
+              <span className="text-ink-muted text-xs">Ratenzahlung verfügbar</span>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

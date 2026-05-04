@@ -157,8 +157,8 @@ export function FCTA() {
                       <circle cx="12" cy="10" r="3" />
                     </svg>
                   ),
-                  label: "Standort",
-                  value: "Wien, Österreich",
+                  label: "Büro",
+                  value: "Neustiftgasse 106/2/11, 1070 Wien",
                 },
                 {
                   icon: (
@@ -192,6 +192,46 @@ export function FCTA() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Google Meet booking */}
+            <a
+              href="https://meet.google.com/new"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 flex items-center gap-3 p-4 rounded-xl border border-border bg-canvas hover:border-border-strong hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-canvas-warm border border-border flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <rect x="1" y="1" width="8" height="8" rx="1.5" fill="#4285F4" />
+                  <rect x="11" y="1" width="8" height="8" rx="1.5" fill="#34A853" />
+                  <rect x="1" y="11" width="8" height="8" rx="1.5" fill="#FBBC05" />
+                  <rect x="11" y="11" width="8" height="8" rx="1.5" fill="#EA4335" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <div className="text-ink text-sm font-semibold group-hover:text-ink-soft transition-colors">
+                  Gespräch direkt buchen
+                </div>
+                <div className="text-ink-muted text-xs">via Google Meet · kostenlos & unverbindlich</div>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-ink-muted group-hover:translate-x-0.5 transition-transform">
+                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+
+            {/* Google Maps */}
+            <div className="mt-4 rounded-2xl overflow-hidden border border-border shadow-card">
+              <iframe
+                src="https://www.google.com/maps?q=Neustiftgasse+106,+1070+Wien,+Austria&output=embed&hl=de&z=16"
+                width="100%"
+                height="220"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Webflix Büro — Neustiftgasse 106, 1070 Wien"
+              />
             </div>
           </motion.div>
 
@@ -356,10 +396,24 @@ export function FCTA() {
                   {status === "loading" ? "Wird gesendet …" : "Anfrage absenden"}
                 </button>
 
-                <p className="text-ink-muted text-sm text-center">
-                  Antwort innerhalb von 24 Stunden. Ihre Daten werden nicht
-                  weitergegeben.
-                </p>
+                <div className="flex flex-col items-center gap-2">
+                  <p className="text-ink-muted text-xs text-center">
+                    Antwort innerhalb von 24 Stunden. Ihre Daten werden nicht weitergegeben.
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap justify-center">
+                    <div className="flex items-center gap-1.5">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                      <span className="text-xs font-bold" style={{ color: "#635BFF" }}>Stripe</span>
+                    </div>
+                    <span className="text-border text-xs">·</span>
+                    <span className="px-2 py-0.5 rounded text-[11px] font-black text-black" style={{ background: "#FFB3C7" }}>
+                      Klarna
+                    </span>
+                    <span className="text-ink-muted text-xs">Ratenzahlung möglich</span>
+                  </div>
+                </div>
               </form>
             )}
           </motion.div>
